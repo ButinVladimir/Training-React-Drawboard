@@ -1,0 +1,45 @@
+import io from 'socket.io-client';
+import * as socketEvents from './socket-events';
+
+export default class SocketService {
+  constructor() {
+    this.io = io('http://localhost:8000/', {
+      autoConnect: false,
+      reconnection: false,
+    });
+  }
+
+  connect(room, onConnect) {
+    this.io
+      .off(socketEvents.CONNECT)
+      .on(socketEvents.CONNECT, () => this.io.emit(socketEvents.JOIN_ROOM, room))
+      .off(socketEvents.CONNECTION_ESTABLISHED)
+      .on(socketEvents.CONNECTION_ESTABLISHED, onConnect);
+
+    this.io.connect();
+  }
+
+  setErrorHandlers(onError) {
+    this.io
+      .off(socketEvents.CONNECT_ERROR)
+      .on(socketEvents.CONNECT_ERROR, () => {
+        onError('Cannot connect to the server');
+      })
+      .off(socketEvents.RECONNECT_ERROR)
+      .on(socketEvents.RECONNECT_ERROR, () => {
+        onError('Cannot reconnect to the server');
+      })
+      .off(socketEvents.ERROR)
+      .on(socketEvents.ERROR, (error) => {
+        onError(`An error occured: ${error}`);
+      })
+      .off(socketEvents.USER_ERROR)
+      .on(socketEvents.USER_ERROR, (error) => {
+        onError(`An error occured: ${error}`);
+      })
+      .off(socketEvents.DISCONNECT)
+      .on(socketEvents.DISCONNECT, () => {
+        onError('An disconnect occured');
+      });
+  }
+}

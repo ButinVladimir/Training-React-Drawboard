@@ -1,0 +1,35 @@
+.login-container {
+  display: flex;
+  flex-direction: column;
+  padding: 15px 0 0 40px;
+  width: 241px;
+}
+
+.login-container > .row {
+  display: flex;
+}
+
+.login-container > .row > .col {
+  padding: 5px;
+}
+
+.login-container > .row > .col.header {
+  font-weight: bold;
+  font-family: sans-serif, serif;
+  font-size: 14px;
+  width: 43px;
+}
+
+.login-container > .row > .col > .input {
+  padding: 3px;
+  border-radius: 3px;
+}
+
+.login-container > .row.right {
+  flex-direction: row-reverse;
+}
+
+.login-container > .row > .col > .error {
+  color: red;
+  font-weight: bolder;
+}
