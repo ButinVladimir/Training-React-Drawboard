@@ -1,0 +1,38 @@
+.board-container {
+  height: 100vh;
+  width: 100%;
+}
+
+.board-container > .top-panel-container {  
+  border-bottom: 1px solid black;
+}
+
+.board-container > .top-panel-container > .top-panel {
+  display: flex;
+  flex-direction: row;  
+  width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  height: 50px;
+}
+
+.board-container > .top-panel-container > .top-panel select {
+  min-width: 80px;
+}
+
+.board-container > .top-panel-container > .top-panel > .tool-select {
+  margin-left: 20px;
+}
+
+.board-container > .top-panel-container > .top-panel > .tool-options {
+  margin-left: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100px;
+}
+
+.board-container > .top-panel-container > .top-panel > .tool-options > .tool-option-container {
+  margin-left: 40px;
+}

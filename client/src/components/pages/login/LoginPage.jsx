@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import './style.css';
 
 const LoginPage = ({
+  locked,
   errorMessage,
   room,
   onSetRoom,
@@ -18,19 +19,20 @@ const LoginPage = ({
     {errorMessage && (
       <div className="row">
         <div className="col">
-          <span className="error">{errorMessage}</span>
+          {errorMessage}
         </div>
       </div>
     )}
     <div className="row right">
       <div className="col">
-        <button className="login-button" type="button" onClick={onLogin}>Log in</button>
+        <button type="button" disabled={locked} onClick={onLogin}>Log in</button>
       </div>
     </div>
   </div>
 );
 
 LoginPage.propTypes = {
+  locked: PropTypes.bool.isRequired,
   errorMessage: PropTypes.string,
   room: PropTypes.string.isRequired,
   onSetRoom: PropTypes.func.isRequired,

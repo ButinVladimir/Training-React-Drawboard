@@ -29,7 +29,7 @@
   flex-direction: row-reverse;
 }
 
-.login-container > .row > .col > .error {
+.login-container > .row > .col.error {
   color: red;
   font-weight: bolder;
 }

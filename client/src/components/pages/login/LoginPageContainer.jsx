@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import LoginPage from './LoginPage';
 import { boardPage } from '../../../routes';
-import SocketService from '../../../services/SocketService';
 
 class LoginPageContainer extends Component {
   constructor(props) {
@@ -19,8 +18,8 @@ class LoginPageContainer extends Component {
     this.onSetRoom = this.onSetRoom.bind(this);
     this.onLogin = this.onLogin.bind(this);
 
-    const { socketService } = props;
-    socketService.setErrorHandlers(this.onError);
+    const { registerErrorHandlers } = this.props;
+    registerErrorHandlers(this.onError);
   }
 
   onSetRoom(room) {
@@ -30,23 +29,23 @@ class LoginPageContainer extends Component {
       return;
     }
 
-    this.setState(() => ({ errorMessage: '', room }));
+    this.setState({ errorMessage: '', room });
   }
 
   onLogin() {
     const { locked, room } = this.state;
-    const { socketService, onConnectionEstablished } = this.props;
+    const { onLogin } = this.props;
 
     if (locked) {
       return;
     }
 
-    this.setState(() => ({ locked: true, errorMessage: '' }));
-    socketService.connect(room, onConnectionEstablished);
+    this.setState({ locked: true, errorMessage: '' });
+    onLogin(room);
   }
 
   onError(error) {
-    this.setState(() => ({ locked: false, errorMessage: error, isLoggedIn: false }));
+    this.setState({ locked: false, errorMessage: error });
   }
 
   render() {
@@ -74,8 +73,8 @@ class LoginPageContainer extends Component {
 
 LoginPageContainer.propTypes = {
   isLoggedIn: PropTypes.bool.isRequired,
-  socketService: PropTypes.instanceOf(SocketService).isRequired,
-  onConnectionEstablished: PropTypes.func.isRequired,
+  registerErrorHandlers: PropTypes.func.isRequired,
+  onLogin: PropTypes.func.isRequired,
 };
 
 export default LoginPageContainer;

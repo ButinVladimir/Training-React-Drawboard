@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Switch, Route } from 'react-router-dom';
 import { boardPage } from './routes';
 import AuthGuard from './components/authGuard/AuthGuard';
 import LoginPage from './components/pages/login/LoginPageContainer';
-import BoardPage from './components/pages/board/BoardPage';
-import SocketService from './services/SocketService';
+import BoardPage from './components/pages/board/BoardPageContainer';
+import SocketService from './socketService/SocketService';
+import ToolsProvider from './tools/ToolsProvider';
 
 class App extends Component {
   constructor(props) {
@@ -14,19 +16,25 @@ class App extends Component {
       isLoggedIn: false,
     };
 
-    this.onConnectionEstablished = this.onConnectionEstablished.bind(this);
-
-    this.socketService = new SocketService();
+    this.registerErrorHandlers = this.registerErrorHandlers.bind(this);
+    this.onLogin = this.onLogin.bind(this);
   }
 
-  onConnectionEstablished() {
-    this.setState(() => ({ isLoggedIn: true }));
+  onLogin(room) {
+    const { socketService } = this.props;
+    socketService.connect(room, () => {
+      this.setState({ isLoggedIn: true });
+    });
+  }
+
+  registerErrorHandlers(onError) {
+    const { socketService } = this.props;
+    socketService.setErrorHandlers(onError);
   }
 
   render() {
-    const {
-      isLoggedIn,
-    } = this.state;
+    const { isLoggedIn } = this.state;
+    const { toolsProvider } = this.props;
 
     return (
       <Switch>
@@ -36,7 +44,10 @@ class App extends Component {
           render={
             () => (
               <AuthGuard isLoggedIn={isLoggedIn}>
-                <BoardPage />
+                <BoardPage
+                  registerErrorHandlers={this.registerErrorHandlers}
+                  toolsProvider={toolsProvider}
+                />
               </AuthGuard>
             )
           }
@@ -46,8 +57,8 @@ class App extends Component {
             () => (
               <LoginPage
                 isLoggedIn={isLoggedIn}
-                socketService={this.socketService}
-                onConnectionEstablished={this.onConnectionEstablished}
+                registerErrorHandlers={this.registerErrorHandlers}
+                onLogin={this.onLogin}
               />
             )
           }
@@ -56,5 +67,10 @@ class App extends Component {
     );
   }
 }
+
+App.propTypes = {
+  socketService: PropTypes.instanceOf(SocketService).isRequired,
+  toolsProvider: PropTypes.instanceOf(ToolsProvider).isRequired,
+};
 
 export default App;
