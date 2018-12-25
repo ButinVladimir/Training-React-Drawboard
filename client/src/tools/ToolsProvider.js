@@ -1,18 +1,25 @@
-import BaseTool from '../components/tools/BaseTool';
+import BaseTool from './BaseTool';
 
 class ToolsProvider {
-  constructor() {
+  constructor(canvas) {
     this.registeredTools = new Map();
+    this.canvas = canvas;
   }
 
-  registerTool(tool) {
-    if (tool === null || !(tool instanceof BaseTool)) {
-      throw new TypeError('Tool must be an instance of any class extending BaseTool');
+  registerTool(ToolConstructor) {
+    if (ToolConstructor === null || !(ToolConstructor instanceof Function)) {
+      throw new TypeError('ToolConstructor must be an constructor of any class extending BaseTool');
     }
 
-    const { name } = tool;
+    const { name } = ToolConstructor;
     if (this.registeredTools.has(name)) {
       throw new Error(`${name} has been already registered within the provider`);
+    }
+
+    const tool = new ToolConstructor(this.canvas);
+
+    if (tool === null || !(tool instanceof BaseTool)) {
+      throw new TypeError('Tool must be an instance of any class extending BaseTool');
     }
 
     this.registeredTools.set(name, tool);

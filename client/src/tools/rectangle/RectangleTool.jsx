@@ -5,8 +5,8 @@ import RectangleToolOptions from './RectangleToolOptionsContainer';
 const RECTANGLE_TOOL_NAME = 'Rectangle';
 
 class RectangleTool extends BaseTool {
-  constructor() {
-    super();
+  constructor(canvas) {
+    super(canvas);
 
     this.onSelectWidth = this.onSelectWidth.bind(this);
     this.onSelectColor = this.onSelectColor.bind(this);
@@ -15,7 +15,7 @@ class RectangleTool extends BaseTool {
     this.color = '#000000';
   }
 
-  get name() {
+  static get name() {
     return RECTANGLE_TOOL_NAME;
   }
 

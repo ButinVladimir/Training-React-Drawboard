@@ -5,8 +5,8 @@ import LineToolOptions from './LineToolOptionsContainer';
 const LINE_TOOL_NAME = 'Line';
 
 class LineTool extends BaseTool {
-  constructor() {
-    super();
+  constructor(canvas) {
+    super(canvas);
 
     this.onSelectWidth = this.onSelectWidth.bind(this);
     this.onSelectColor = this.onSelectColor.bind(this);
@@ -15,7 +15,7 @@ class LineTool extends BaseTool {
     this.color = '#000000';
   }
 
-  get name() {
+  static get name() {
     return LINE_TOOL_NAME;
   }
 

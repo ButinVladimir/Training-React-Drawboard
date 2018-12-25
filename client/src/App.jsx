@@ -6,6 +6,7 @@ import AuthGuard from './components/authGuard/AuthGuard';
 import LoginPage from './components/pages/login/LoginPageContainer';
 import BoardPage from './components/pages/board/BoardPageContainer';
 import SocketService from './socketService/SocketService';
+import Canvas from './tools/Canvas';
 import ToolsProvider from './tools/ToolsProvider';
 
 class App extends Component {
@@ -34,7 +35,7 @@ class App extends Component {
 
   render() {
     const { isLoggedIn } = this.state;
-    const { toolsProvider } = this.props;
+    const { toolsProvider, canvas } = this.props;
 
     return (
       <Switch>
@@ -47,6 +48,7 @@ class App extends Component {
                 <BoardPage
                   registerErrorHandlers={this.registerErrorHandlers}
                   toolsProvider={toolsProvider}
+                  canvas={canvas}
                 />
               </AuthGuard>
             )
@@ -71,6 +73,7 @@ class App extends Component {
 App.propTypes = {
   socketService: PropTypes.instanceOf(SocketService).isRequired,
   toolsProvider: PropTypes.instanceOf(ToolsProvider).isRequired,
+  canvas: PropTypes.instanceOf(Canvas).isRequired,
 };
 
 export default App;

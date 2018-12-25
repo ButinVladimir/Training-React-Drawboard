@@ -1,9 +1,15 @@
-import RectangleTool from '../components/tools/rectangle/RectangleTool';
-import LineTool from '../components/tools/line/LineTool';
+import MoveTool from './help/MoveTool';
+import ZoomTool from './help/ZoomTool';
+import RotateTool from './help/RotateTool';
+import RectangleTool from './rectangle/RectangleTool';
+import LineTool from './line/LineTool';
 
 const addTools = (toolsProvider) => {
-  toolsProvider.registerTool(new RectangleTool());
-  toolsProvider.registerTool(new LineTool());
+  toolsProvider.registerTool(MoveTool);
+  toolsProvider.registerTool(ZoomTool);
+  toolsProvider.registerTool(RotateTool);
+  toolsProvider.registerTool(LineTool);
+  toolsProvider.registerTool(RectangleTool);
 };
 
 export default addTools;

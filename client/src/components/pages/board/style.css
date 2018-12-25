@@ -30,9 +30,22 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  height: 100px;
 }
 
 .board-container > .top-panel-container > .top-panel > .tool-options > .tool-option-container {
   margin-left: 40px;
+}
+
+.board-container > .drawboard-canvas-container {
+  width: 100%;
+  height: calc(100% - 51px);
+  overflow: hidden;
+}
+
+.board-container > .drawboard-canvas-container > #drawboard-canvas {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  width: 100vw;
+  height: calc(100vh - 51px);
 }
