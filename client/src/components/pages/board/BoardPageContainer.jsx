@@ -1,4 +1,4 @@
-import React, { Component, createRef } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import BoardPage from './BoardPage';
 import ToolsProvider from '../../../tools/ToolsProvider';
@@ -24,7 +24,9 @@ class BoardPageContainer extends Component {
     };
     this.selectedTool = toolsProvider.getTool(selectedToolName);
 
-    this.canvasRef = createRef();
+    this.canvasContainerRef = null;
+    this.screenCanvasRef = null;
+
     const { registerErrorHandlers } = this.props;
     registerErrorHandlers(this.onError);
   }
@@ -40,12 +42,16 @@ class BoardPageContainer extends Component {
 
   onResize() {
     const { canvas } = this.props;
-    const ref = this.canvasRef.current;
-    ref.setAttribute('width', window.innerWidth);
-    ref.setAttribute('height', window.innerHeight - 51);
+    const width = window.innerWidth - this.canvasContainerRef.offsetLeft;
+    const height = window.innerHeight - this.canvasContainerRef.offsetTop;
 
-    canvas.screenCanvas = this.canvasRef.current;
-    canvas.completeOutput();
+    this.screenCanvasRef.setAttribute('width', width);
+    this.screenCanvasRef.setAttribute('height', height);
+
+    canvas.screenCanvas = this.screenCanvasRef;
+    canvas.containerPositionX = this.canvasContainerRef.offsetLeft;
+    canvas.containerPositionY = this.canvasContainerRef.offsetTop;
+    canvas.outputCompletely();
   }
 
   onError(error) {
@@ -88,7 +94,8 @@ class BoardPageContainer extends Component {
         onMouseDown={this.onMouseDown}
         onMouseUp={this.onMouseUp}
         onMouseMove={this.onMouseMove}
-        ref={this.canvasRef}
+        setCanvasContainerRef={(ref) => { this.canvasContainerRef = ref; }}
+        setScreenCanvasRef={(ref) => { this.screenCanvasRef = ref; }}
       />
     );
   }

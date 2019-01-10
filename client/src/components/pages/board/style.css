@@ -37,12 +37,15 @@
 }
 
 .board-container > .drawboard-canvas-container {
+  background: #777;
+  position: relative;
   width: 100%;
   height: calc(100% - 51px);
   overflow: hidden;
 }
 
-.board-container > .drawboard-canvas-container > #drawboard-canvas {
+.board-container > .drawboard-canvas-container > canvas {
+  position: absolute;
   margin: 0;
   padding: 0;
   border: 0;

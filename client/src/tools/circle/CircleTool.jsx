@@ -1,10 +1,10 @@
 import React from 'react';
 import BaseTool from '../BaseTool';
-import RectangleToolOptions from './RectangleToolOptionsContainer';
+import CircleToolOptions from './CircleToolOptionsContainer';
 
-const RECTANGLE_TOOL_NAME = 'Rectangle';
+const CIRCLE_TOOL_NAME = 'Circle';
 
-class RectangleTool extends BaseTool {
+class CircleTool extends BaseTool {
   constructor(canvas) {
     super(canvas);
 
@@ -26,7 +26,7 @@ class RectangleTool extends BaseTool {
   }
 
   static get name() {
-    return RECTANGLE_TOOL_NAME;
+    return CIRCLE_TOOL_NAME;
   }
 
   onChangeAddBorder(addBorder) {
@@ -68,32 +68,28 @@ class RectangleTool extends BaseTool {
   }
 
   draw(context, event) {
+    const radius = Math.sqrt(
+      ((event.clientX - this.anchorX) ** 2) + ((event.clientY - this.anchorY) ** 2),
+    );
+    context.beginPath();
+    context.arc(this.anchorX, this.anchorY, radius, 0, Math.PI * 2);
+
     if (this.addFill) {
       context.fillStyle = this.fillColor; // eslint-disable-line no-param-reassign
-      context.fillRect(
-        this.anchorX,
-        this.anchorY,
-        event.clientX - this.anchorX,
-        event.clientY - this.anchorY,
-      );
+      context.fill();
     }
 
     if (this.addBorder) {
       const lineWidth = this.borderWidth * this.canvas.zoom;
       context.lineWidth = lineWidth; // eslint-disable-line no-param-reassign
       context.strokeStyle = this.borderColor; // eslint-disable-line no-param-reassign
-      context.strokeRect(
-        this.anchorX,
-        this.anchorY,
-        event.clientX - this.anchorX,
-        event.clientY - this.anchorY,
-      );
+      context.stroke();
     }
   }
 
   get optionsElement() {
     return (
-      <RectangleToolOptions
+      <CircleToolOptions
         addBorder={this.addBorder}
         borderWidth={this.borderWidth}
         borderColor={this.borderColor}
@@ -109,4 +105,4 @@ class RectangleTool extends BaseTool {
   }
 }
 
-export default RectangleTool;
+export default CircleTool;

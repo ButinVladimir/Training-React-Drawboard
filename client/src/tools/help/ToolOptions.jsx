@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 const ToolOptions = ({
   speed,
   parsedSpeed,
-  currentValue,
   onChangeSpeed,
   onSetDefaultSpeed,
   onRestore,
@@ -23,9 +22,6 @@ const ToolOptions = ({
     <div className="tool-option-container">
       <button type="button" onClick={onRestore}>Restore</button>
     </div>
-    <div className="tool-option-container">
-      {currentValue}
-    </div>
   </Fragment>
 );
 
@@ -35,7 +31,6 @@ ToolOptions.propTypes = {
     PropTypes.number,
   ]).isRequired,
   parsedSpeed: PropTypes.number.isRequired,
-  currentValue: PropTypes.string.isRequired,
   onChangeSpeed: PropTypes.func.isRequired,
   onSetDefaultSpeed: PropTypes.func.isRequired,
   onRestore: PropTypes.func.isRequired,

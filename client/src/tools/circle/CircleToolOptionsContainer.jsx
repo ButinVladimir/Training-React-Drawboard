@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import RectangleToolOptions from './RectangleToolOptions';
+import CircleToolOptions from './CircleToolOptions';
 
 const widths = [1, 2, 3, 4, 5, 10, 20, 50];
 
-class RectangleToolOptionsContainer extends Component {
+class CircleToolOptionsContainer extends Component {
   constructor(props) {
     super(props);
 
@@ -85,7 +85,7 @@ class RectangleToolOptionsContainer extends Component {
     } = this.state;
 
     return (
-      <RectangleToolOptions
+      <CircleToolOptions
         addBorder={addBorder}
         borderWidth={borderWidth}
         borderColor={borderColor}
@@ -102,7 +102,7 @@ class RectangleToolOptionsContainer extends Component {
   }
 }
 
-RectangleToolOptionsContainer.propTypes = {
+CircleToolOptionsContainer.propTypes = {
   addBorder: PropTypes.bool.isRequired,
   borderWidth: PropTypes.number.isRequired,
   borderColor: PropTypes.string.isRequired,
@@ -115,4 +115,4 @@ RectangleToolOptionsContainer.propTypes = {
   onSelectFillColor: PropTypes.func.isRequired,
 };
 
-export default RectangleToolOptionsContainer;
+export default CircleToolOptionsContainer;

@@ -1,8 +1,8 @@
-import React, { forwardRef } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import './style.css';
 
-const BoardPage = forwardRef(({
+const BoardPage = ({
   toolsNames,
   selectedToolName,
   selectedToolOptions,
@@ -10,7 +10,9 @@ const BoardPage = forwardRef(({
   onMouseDown,
   onMouseUp,
   onMouseMove,
-}, canvasRef) => {
+  setCanvasContainerRef,
+  setScreenCanvasRef,
+}) => {
   const toolNameOptions = toolsNames
     .map(n => (<option key={n} value={n}>{n}</option>));
 
@@ -28,20 +30,23 @@ const BoardPage = forwardRef(({
           </div>
         </div>
       </div>
-      <div className="drawboard-canvas-container" draggable={false}>
+      <div // eslint-disable-line jsx-a11y/no-static-element-interactions
+        className="drawboard-canvas-container"
+        onMouseDown={onMouseDown}
+        onMouseUp={onMouseUp}
+        onMouseMove={onMouseMove}
+        onMouseLeave={onMouseUp}
+        ref={setCanvasContainerRef}
+      >
         <canvas
           draggable={false}
           id="drawboard-canvas"
-          ref={canvasRef}
-          onMouseDown={onMouseDown}
-          onMouseUp={onMouseUp}
-          onMouseMove={onMouseMove}
-          onMouseLeave={onMouseUp}
+          ref={setScreenCanvasRef}
         />
       </div>
     </div>
   );
-});
+};
 
 BoardPage.propTypes = {
   toolsNames: PropTypes.arrayOf(PropTypes.string).isRequired,
@@ -51,6 +56,8 @@ BoardPage.propTypes = {
   onMouseDown: PropTypes.func.isRequired,
   onMouseUp: PropTypes.func.isRequired,
   onMouseMove: PropTypes.func.isRequired,
+  setCanvasContainerRef: PropTypes.func.isRequired,
+  setScreenCanvasRef: PropTypes.func.isRequired,
 };
 
 export default BoardPage;

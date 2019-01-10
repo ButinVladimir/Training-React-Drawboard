@@ -50,13 +50,10 @@ class MoveTool extends BaseTool {
   }
 
   get optionsElement() {
-    const currentValue = `${this.canvas.deltaX} ${this.canvas.deltaY}`;
-
     return (
       <ToolOptions
         key={MOVE_TOOL_NAME}
         speed={this.speed}
-        currentValue={currentValue}
         defaultSpeed={DEFAULT_SPEED}
         onChangeSpeed={this.onChangeSpeed}
         onRestore={this.onRestore}

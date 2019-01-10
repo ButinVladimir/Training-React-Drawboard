@@ -45,13 +45,10 @@ class RotateTool extends BaseTool {
   }
 
   get optionsElement() {
-    const currentValue = `${this.canvas.rotation}`;
-
     return (
       <ToolOptions
         key={ROTATE_TOOL_NAME}
         speed={this.speed}
-        currentValue={currentValue}
         defaultSpeed={DEFAULT_SPEED}
         onChangeSpeed={this.onChangeSpeed}
         onRestore={this.onRestore}

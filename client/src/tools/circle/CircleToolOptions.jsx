@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
-const RectangleToolOptions = ({
+const CircleToolOptions = ({
   addBorder,
   borderWidth,
   borderColor,
@@ -44,7 +44,7 @@ const RectangleToolOptions = ({
   );
 };
 
-RectangleToolOptions.propTypes = {
+CircleToolOptions.propTypes = {
   addBorder: PropTypes.bool.isRequired,
   borderWidth: PropTypes.number.isRequired,
   borderColor: PropTypes.string.isRequired,
@@ -58,4 +58,4 @@ RectangleToolOptions.propTypes = {
   onSelectFillColor: PropTypes.func.isRequired,
 };
 
-export default RectangleToolOptions;
+export default CircleToolOptions;

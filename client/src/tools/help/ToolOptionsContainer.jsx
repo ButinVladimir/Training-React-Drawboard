@@ -36,13 +36,12 @@ class ToolOptionsContainer extends Component {
 
   render() {
     const { speed, parsedSpeed } = this.state;
-    const { currentValue, onRestore } = this.props;
+    const { onRestore } = this.props;
 
     return (
       <ToolOptions
         speed={speed}
         parsedSpeed={parsedSpeed}
-        currentValue={currentValue}
         onChangeSpeed={this.onChangeSpeed}
         onSetDefaultSpeed={this.onSetDefaultSpeed}
         onRestore={onRestore}
@@ -54,7 +53,6 @@ class ToolOptionsContainer extends Component {
 ToolOptionsContainer.propTypes = {
   defaultSpeed: PropTypes.number.isRequired,
   speed: PropTypes.number.isRequired,
-  currentValue: PropTypes.string.isRequired,
   onChangeSpeed: PropTypes.func.isRequired,
   onRestore: PropTypes.func.isRequired,
 };

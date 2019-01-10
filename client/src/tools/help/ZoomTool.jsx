@@ -45,13 +45,10 @@ class ZoomTool extends BaseTool {
   }
 
   get optionsElement() {
-    const currentValue = `${this.canvas.zoom}`;
-
     return (
       <ToolOptions
         key={ZOOM_TOOL_NAME}
         speed={this.speed}
-        currentValue={currentValue}
         defaultSpeed={DEFAULT_SPEED}
         onChangeSpeed={this.onChangeSpeed}
         onRestore={this.onRestore}
