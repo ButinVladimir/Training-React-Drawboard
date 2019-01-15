@@ -1,6 +1,6 @@
-import ToolStateHandler from '../ToolStateHandler';
+import HelpToolStateHandler from '../HelpToolStateHandler';
 
-class RotateToolStateHandler extends ToolStateHandler {
+class RotateToolStateHandler extends HelpToolStateHandler {
   changeViewState(toolState) {
     this.canvas.viewState.changeRotation(toolState.calculateRotation());
   }

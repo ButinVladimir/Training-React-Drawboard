@@ -18,6 +18,8 @@ class App extends Component {
     };
 
     this.registerErrorHandlers = this.registerErrorHandlers.bind(this);
+    this.registerDrawHandler = this.registerDrawHandler.bind(this);
+    this.emitDrawEvent = this.emitDrawEvent.bind(this);
     this.onLogin = this.onLogin.bind(this);
   }
 
@@ -31,6 +33,16 @@ class App extends Component {
   registerErrorHandlers(onError) {
     const { socketService } = this.props;
     socketService.setErrorHandlers(onError);
+  }
+
+  registerDrawHandler(onDraw) {
+    const { socketService } = this.props;
+    socketService.setDrawHandler(onDraw);
+  }
+
+  emitDrawEvent(...args) {
+    const { socketService } = this.props;
+    socketService.emitDrawEvent(...args);
   }
 
   render() {
@@ -47,6 +59,8 @@ class App extends Component {
               <AuthGuard isLoggedIn={isLoggedIn}>
                 <BoardPage
                   registerErrorHandlers={this.registerErrorHandlers}
+                  registerDrawHandler={this.registerDrawHandler}
+                  emitDrawEvent={this.emitDrawEvent}
                   toolsProvider={toolsProvider}
                   canvas={canvas}
                 />

@@ -9,7 +9,7 @@ class LineToolStateHandler extends BaseToolStateHandler {
     this.canvas.appendBuffer();
     toolState.fixRelativeCoords(this.canvas.containerPositionX, this.canvas.containerPositionY);
 
-    return toolState;
+    return toolState.serialize();
   }
 
   applyState(context, viewState, toolState) { // eslint-disable-line class-methods-use-this

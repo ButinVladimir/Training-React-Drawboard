@@ -1,9 +1,9 @@
-import ToolState from '../ToolState';
+import HelpToolState from '../HelpToolState';
 import { DEFAULT_ZOOM } from '../../ViewState';
 
 const DEFAULT_SPEED = 200.0;
 
-class ZoomToolState extends ToolState {
+class ZoomToolState extends HelpToolState {
   constructor() {
     super();
 

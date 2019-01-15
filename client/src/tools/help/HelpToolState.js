@@ -38,6 +38,14 @@ class ToolState extends BaseToolState {
     this.clientX = this.anchorX;
     this.clientY = this.anchorY;
   }
+
+  serialize() { // eslint-disable-line class-methods-use-this
+    return null;
+  }
+
+  static unserialize() {
+    return null;
+  }
 }
 
 export default ToolState;

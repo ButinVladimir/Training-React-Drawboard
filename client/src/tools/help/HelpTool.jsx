@@ -1,10 +1,10 @@
 import React from 'react';
 import BaseTool from '../BaseTool';
-import ToolOptions from './ToolOptionsContainer';
+import HelpToolOptions from '../../components/tools/help/HelpToolOptionsContainer';
 
 const DEFAULT_TOOL_KEY = 'toolKey';
 
-class Tool extends BaseTool {
+class HelpTool extends BaseTool {
   constructor(canvas) {
     super(canvas);
 
@@ -19,7 +19,7 @@ class Tool extends BaseTool {
 
   get optionsElement() {
     return (
-      <ToolOptions
+      <HelpToolOptions
         key={this.toolKey}
         toolState={this.toolState}
         onRestore={this.onRestore}
@@ -28,4 +28,4 @@ class Tool extends BaseTool {
   }
 }
 
-export default Tool;
+export default HelpTool;

@@ -42,6 +42,24 @@ class ViewState {
     context.rotate(-this.rotation);
     context.translate(-this.deltaX, -this.deltaY);
   }
+
+  serialize() {
+    return {
+      deltaX: this.deltaX,
+      deltaY: this.deltaY,
+      zoom: this.zoom,
+      rotation: this.rotation,
+    };
+  }
+
+  static unserialize(viewStateObj) {
+    return new ViewState(
+      viewStateObj.deltaX,
+      viewStateObj.deltaY,
+      viewStateObj.zoom,
+      viewStateObj.rotation,
+    );
+  }
 }
 
 export default ViewState;

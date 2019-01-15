@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import BoardPage from './BoardPage';
 import ToolsProvider from '../../../tools/ToolsProvider';
 import Canvas from '../../../tools/Canvas';
+import ViewState from '../../../tools/ViewState';
 
 class BoardPageContainer extends Component {
   constructor(props) {
@@ -12,6 +13,7 @@ class BoardPageContainer extends Component {
     const selectedToolName = toolsProvider.getToolsNames()[0];
 
     this.onError = this.onError.bind(this);
+    this.onDraw = this.onDraw.bind(this);
     this.onChangeTool = this.onChangeTool.bind(this);
     this.onResize = this.onResize.bind(this);
     this.onMouseDown = this.onMouseDown.bind(this);
@@ -26,12 +28,13 @@ class BoardPageContainer extends Component {
 
     this.canvasContainerRef = null;
     this.screenCanvasRef = null;
-
-    const { registerErrorHandlers } = this.props;
-    registerErrorHandlers(this.onError);
   }
 
   componentDidMount() {
+    const { registerErrorHandlers, registerDrawHandler } = this.props;
+    registerErrorHandlers(this.onError);
+    registerDrawHandler(this.onDraw);
+
     window.addEventListener('resize', this.onResize);
     this.onResize();
   }
@@ -58,9 +61,19 @@ class BoardPageContainer extends Component {
     this.setState({ errorMessage: error });
   }
 
+  onDraw(viewStateObj, toolName, toolStateObj) {
+    const { canvas, toolsProvider } = this.props;
+    const tool = toolsProvider.getTool(toolName);
+    const viewState = ViewState.unserialize(viewStateObj);
+    const toolState = tool.unserializeState(toolStateObj);
+
+    canvas.applyState(tool.stateHandler, viewState, toolState);
+  }
+
   onChangeTool(selectedToolName) {
     const { toolsProvider } = this.props;
     this.selectedTool = toolsProvider.getTool(selectedToolName);
+    this.selectedTool.onSelect();
 
     this.setState({ selectedToolName });
   }
@@ -70,7 +83,17 @@ class BoardPageContainer extends Component {
   }
 
   onMouseUp(event) {
-    const drawEvent = this.selectedTool.screenHandler.onMouseUp(event);
+    const drawEventObj = this.selectedTool.screenHandler.onMouseUp(event);
+
+    if (drawEventObj != null) {
+      const { selectedToolName } = this.state;
+      const { emitDrawEvent, canvas } = this.props;
+      emitDrawEvent(
+        canvas.viewState.serialize(),
+        selectedToolName,
+        drawEventObj,
+      );
+    }
   }
 
   onMouseMove(event) {
@@ -103,6 +126,8 @@ class BoardPageContainer extends Component {
 
 BoardPageContainer.propTypes = {
   registerErrorHandlers: PropTypes.func.isRequired,
+  registerDrawHandler: PropTypes.func.isRequired,
+  emitDrawEvent: PropTypes.func.isRequired,
   toolsProvider: PropTypes.instanceOf(ToolsProvider).isRequired,
   canvas: PropTypes.instanceOf(Canvas).isRequired,
 };

@@ -1,9 +1,9 @@
-import ToolState from '../ToolState';
+import HelpToolState from '../HelpToolState';
 import { DEFAULT_ROTATION } from '../../ViewState';
 
 const DEFAULT_SPEED = 200.0;
 
-class RotateToolState extends ToolState {
+class RotateToolState extends HelpToolState {
   constructor() {
     super();
 

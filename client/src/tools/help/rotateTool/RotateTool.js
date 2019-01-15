@@ -1,10 +1,10 @@
-import Tool from '../Tool';
+import HelpTool from '../HelpTool';
 import RotateToolState from './RotateToolState';
 import RotateToolStateHandler from './RotateToolStateHandler';
 
 const ROTATE_TOOL_NAME = 'Rotate';
 
-class RotateTool extends Tool {
+class RotateTool extends HelpTool {
   constructor(canvas) {
     super(canvas);
 

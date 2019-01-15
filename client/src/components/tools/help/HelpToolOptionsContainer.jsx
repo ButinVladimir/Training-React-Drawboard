@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import ToolOptions from './ToolOptions';
-import ToolState from './ToolState';
+import HelpToolOptions from './HelpToolOptions';
+import HelpToolState from '../../../tools/help/HelpToolState';
 
-class ToolOptionsContainer extends Component {
+class HelpToolOptionsContainer extends Component {
   constructor(props) {
     super(props);
 
@@ -48,7 +48,7 @@ class ToolOptionsContainer extends Component {
     const { speed, parsedSpeed } = this.state;
 
     return (
-      <ToolOptions
+      <HelpToolOptions
         speed={speed}
         parsedSpeed={parsedSpeed}
         onChangeSpeed={this.onChangeSpeed}
@@ -59,9 +59,9 @@ class ToolOptionsContainer extends Component {
   }
 }
 
-ToolOptionsContainer.propTypes = {
-  toolState: PropTypes.instanceOf(ToolState).isRequired,
+HelpToolOptionsContainer.propTypes = {
+  toolState: PropTypes.instanceOf(HelpToolState).isRequired,
   onRestore: PropTypes.func.isRequired,
 };
 
-export default ToolOptionsContainer;
+export default HelpToolOptionsContainer;

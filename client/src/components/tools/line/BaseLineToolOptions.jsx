@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
-const LineToolOptions = ({
+const BaseLineToolOptions = ({
   width,
   color,
   widths,
@@ -26,7 +26,7 @@ const LineToolOptions = ({
   );
 };
 
-LineToolOptions.propTypes = {
+BaseLineToolOptions.propTypes = {
   width: PropTypes.number.isRequired,
   color: PropTypes.string.isRequired,
   widths: PropTypes.arrayOf(PropTypes.number).isRequired,
@@ -34,4 +34,4 @@ LineToolOptions.propTypes = {
   onSelectColor: PropTypes.func.isRequired,
 };
 
-export default LineToolOptions;
+export default BaseLineToolOptions;

@@ -1,9 +1,9 @@
-import ToolState from '../ToolState';
+import HelpToolState from '../HelpToolState';
 import { DEFAULT_DELTA_X, DEFAULT_DELTA_Y } from '../../ViewState';
 
 const DEFAULT_SPEED = 1.0;
 
-class MoveToolState extends ToolState {
+class MoveToolState extends HelpToolState {
   constructor() {
     super();
 

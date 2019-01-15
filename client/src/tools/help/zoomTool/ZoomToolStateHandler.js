@@ -1,6 +1,6 @@
-import ToolStateHandler from '../ToolStateHandler';
+import HelpToolStateHandler from '../HelpToolStateHandler';
 
-class ZoomToolStateHandler extends ToolStateHandler {
+class ZoomToolStateHandler extends HelpToolStateHandler {
   changeViewState(toolState) {
     this.canvas.viewState.changeZoom(toolState.calculateZoom());
   }

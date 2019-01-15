@@ -1,6 +1,6 @@
-import BaseLineToolState from '../BaseLineToolState';
+import BaseFigureToolState from '../BaseFigureToolState';
 
-class LineToolState extends BaseLineToolState {
+class CircleToolState extends BaseFigureToolState {
   constructor() {
     super();
 
@@ -43,17 +43,20 @@ class LineToolState extends BaseLineToolState {
       anchorY: this.anchorY,
       clientX: this.clientX,
       clientY: this.clientY,
-      width: this.width,
-      color: this.color,
+      addBorder: this.addBorder,
+      borderWidth: this.borderWidth,
+      borderColor: this.borderColor,
+      addFill: this.addFill,
+      fillColor: this.fillColor,
     };
   }
 
   static unserialize(stateObj) {
-    const state = new LineToolState();
+    const state = new CircleToolState();
     Object.assign(state, stateObj);
 
     return state;
   }
 }
 
-export default LineToolState;
+export default CircleToolState;

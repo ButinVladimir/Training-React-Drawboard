@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import CircleToolOptions from './CircleToolOptions';
+import BaseFigureToolOptions from './BaseFigureToolOptions';
+import BaseFigureToolState from '../../../tools/BaseFigureToolState';
 
 const widths = [1, 2, 3, 4, 5, 10, 20, 50];
 
-class CircleToolOptionsContainer extends Component {
+class BaseFigureToolOptionsContainer extends Component {
   constructor(props) {
     super(props);
 
@@ -14,65 +15,51 @@ class CircleToolOptionsContainer extends Component {
     this.onChangeAddFill = this.onChangeAddFill.bind(this);
     this.onSelectFillColor = this.onSelectFillColor.bind(this);
 
-    const {
-      addBorder,
-      borderWidth,
-      borderColor,
-      addFill,
-      fillColor,
-    } = this.props;
+    const { toolState } = this.props;
 
     this.state = {
-      addBorder,
-      borderWidth,
-      borderColor,
-      addFill,
-      fillColor,
+      addBorder: toolState.addBorder,
+      borderWidth: toolState.borderWidth,
+      borderColor: toolState.borderColor,
+      addFill: toolState.addFill,
+      fillColor: toolState.fillColor,
     };
   }
 
   onChangeAddBorder() {
-    const { onChangeAddBorder } = this.props;
+    const { toolState } = this.props;
+    toolState.addBorder = !toolState.addBorder;
 
-    this.setState((state) => {
-      const addBorder = !state.addBorder;
-      onChangeAddBorder(addBorder);
-
-      return { addBorder };
-    });
+    this.setState({ addBorder: toolState.addBorder });
   }
 
   onSelectBorderWidth(width) {
-    const { onSelectBorderWidth } = this.props;
+    const { toolState } = this.props;
     const parsedWidth = parseInt(width, 10);
 
     this.setState({ borderWidth: parsedWidth });
-    onSelectBorderWidth(parsedWidth);
+    toolState.borderWidth = parsedWidth;
   }
 
   onSelectBorderColor(borderColor) {
-    const { onSelectBorderColor } = this.props;
+    const { toolState } = this.props;
 
     this.setState({ borderColor });
-    onSelectBorderColor(borderColor);
+    toolState.borderColor = borderColor;
   }
 
   onChangeAddFill() {
-    const { onChangeAddFill } = this.props;
+    const { toolState } = this.props;
+    toolState.addFill = !toolState.addFill;
 
-    this.setState((state) => {
-      const addFill = !state.addFill;
-      onChangeAddFill(addFill);
-
-      return { addFill };
-    });
+    this.setState({ addFill: toolState.addFill });
   }
 
   onSelectFillColor(fillColor) {
-    const { onSelectFillColor } = this.props;
+    const { toolState } = this.props;
 
     this.setState({ fillColor });
-    onSelectFillColor(fillColor);
+    toolState.fillColor = fillColor;
   }
 
   render() {
@@ -85,7 +72,7 @@ class CircleToolOptionsContainer extends Component {
     } = this.state;
 
     return (
-      <CircleToolOptions
+      <BaseFigureToolOptions
         addBorder={addBorder}
         borderWidth={borderWidth}
         borderColor={borderColor}
@@ -102,17 +89,8 @@ class CircleToolOptionsContainer extends Component {
   }
 }
 
-CircleToolOptionsContainer.propTypes = {
-  addBorder: PropTypes.bool.isRequired,
-  borderWidth: PropTypes.number.isRequired,
-  borderColor: PropTypes.string.isRequired,
-  addFill: PropTypes.bool.isRequired,
-  fillColor: PropTypes.string.isRequired,
-  onChangeAddBorder: PropTypes.func.isRequired,
-  onSelectBorderWidth: PropTypes.func.isRequired,
-  onSelectBorderColor: PropTypes.func.isRequired,
-  onChangeAddFill: PropTypes.func.isRequired,
-  onSelectFillColor: PropTypes.func.isRequired,
+BaseFigureToolOptionsContainer.propTypes = {
+  toolState: PropTypes.instanceOf(BaseFigureToolState).isRequired,
 };
 
-export default CircleToolOptionsContainer;
+export default BaseFigureToolOptionsContainer;

@@ -1,35 +1,35 @@
 import React from 'react';
 import BaseTool from '../BaseTool';
-import LineToolState from './LineToolState';
-import LineToolStateHandler from './LineToolStateHandler';
+import BrushToolState from './BrushToolState';
+import BrushToolStateHandler from './BrushToolStateHandler';
 import BaseLineToolOptions from '../../components/tools/line/BaseLineToolOptionsContainer';
 
-const LINE_TOOL_NAME = 'Line';
+const BRUSH_TOOL_NAME = 'Brush';
 
-class LineTool extends BaseTool {
+class BrushTool extends BaseTool {
   constructor(canvas) {
     super(canvas);
 
-    this.toolState = new LineToolState();
-    this.stateHandler = new LineToolStateHandler(canvas);
+    this.toolState = new BrushToolState();
+    this.stateHandler = new BrushToolStateHandler(canvas);
   }
 
   static get name() {
-    return LINE_TOOL_NAME;
+    return BRUSH_TOOL_NAME;
   }
 
   get optionsElement() {
     return (
       <BaseLineToolOptions
-        key={LINE_TOOL_NAME}
+        key={BRUSH_TOOL_NAME}
         toolState={this.toolState}
       />
     );
   }
 
   unserializeState(stateObj) { // eslint-disable-line class-methods-use-this
-    return LineToolState.unserialize(stateObj);
+    return BrushToolState.unserialize(stateObj);
   }
 }
 
-export default LineTool;
+export default BrushTool;

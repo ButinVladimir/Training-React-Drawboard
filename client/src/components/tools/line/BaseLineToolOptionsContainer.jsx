@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import LineToolOptions from './LineToolOptions';
-import LineToolState from './LineToolState';
+import BaseLineToolOptions from './BaseLineToolOptions';
+import BaseLineToolState from '../../../tools/BaseLineToolState';
 
 const widths = [1, 2, 3, 4, 5, 10, 20, 50];
 
-class LineToolOptionsContainer extends Component {
+class BaseLineToolOptionsContainer extends Component {
   constructor(props) {
     super(props);
 
@@ -39,7 +39,7 @@ class LineToolOptionsContainer extends Component {
     const { width, color } = this.state;
 
     return (
-      <LineToolOptions
+      <BaseLineToolOptions
         width={width}
         color={color}
         widths={widths}
@@ -50,8 +50,8 @@ class LineToolOptionsContainer extends Component {
   }
 }
 
-LineToolOptionsContainer.propTypes = {
-  toolState: PropTypes.instanceOf(LineToolState).isRequired,
+BaseLineToolOptionsContainer.propTypes = {
+  toolState: PropTypes.instanceOf(BaseLineToolState).isRequired,
 };
 
-export default LineToolOptionsContainer;
+export default BaseLineToolOptionsContainer;

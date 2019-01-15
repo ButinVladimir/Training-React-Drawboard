@@ -1,6 +1,6 @@
-import ToolStateHandler from '../ToolStateHandler';
+import HelpToolStateHandler from '../HelpToolStateHandler';
 
-class MoveToolStateHandler extends ToolStateHandler {
+class MoveToolStateHandler extends HelpToolStateHandler {
   changeViewState(toolState) {
     this.canvas.viewState.changeDelta(toolState.calculateDeltaX(), toolState.calculateDeltaY());
   }

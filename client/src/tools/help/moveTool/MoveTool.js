@@ -1,10 +1,10 @@
-import Tool from '../Tool';
+import HelpTool from '../HelpTool';
 import MoveToolState from './MoveToolState';
 import MoveToolStateHandler from './MoveToolStateHandler';
 
 const MOVE_TOOL_NAME = 'Move';
 
-class MoveTool extends Tool {
+class MoveTool extends HelpTool {
   constructor(canvas) {
     super(canvas);
 

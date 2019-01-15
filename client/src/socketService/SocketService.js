@@ -42,4 +42,14 @@ export default class SocketService {
         onError('An disconnect occured');
       });
   }
+
+  setDrawHandler(onDraw) {
+    this.io
+      .off(socketEvents.DRAW)
+      .on(socketEvents.DRAW, onDraw);
+  }
+
+  emitDrawEvent(...args) {
+    this.io.emit(socketEvents.DRAW, ...args);
+  }
 }

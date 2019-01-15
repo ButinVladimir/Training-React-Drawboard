@@ -24,6 +24,19 @@ class BaseTool {
 
     return this.screenHandlerValue;
   }
+
+  onSelect() {
+    this.canvas.clearBuffer();
+    this.canvas.show();
+  }
+
+  serializeState() {
+    return this.toolState.serialize();
+  }
+
+  unserializeState(stateObj) { // eslint-disable-line class-methods-use-this,no-unused-vars
+    throw new Error('Method is not implemented');
+  }
 }
 
 export default BaseTool;

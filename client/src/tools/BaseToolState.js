@@ -10,6 +10,14 @@ class BaseToolState {
   onMouseUp() { // eslint-disable-line class-methods-use-this,no-unused-vars
     throw new Error('Method is not implemented');
   }
+
+  serialize() { // eslint-disable-line class-methods-use-this,no-unused-vars
+    throw new Error('Method is not implemented');
+  }
+
+  static unserialize(stateObj) { // eslint-disable-line class-methods-use-this,no-unused-vars
+    throw new Error('Method is not implemented');
+  }
 }
 
 export default BaseToolState;

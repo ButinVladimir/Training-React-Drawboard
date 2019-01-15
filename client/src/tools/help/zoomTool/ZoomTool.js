@@ -1,10 +1,10 @@
-import Tool from '../Tool';
+import HelpTool from '../HelpTool';
 import ZoomToolState from './ZoomToolState';
 import ZoomToolStateHandler from './ZoomToolStateHandler';
 
 const ZOOM_TOOL_NAME = 'Zoom';
 
-class ZoomTool extends Tool {
+class ZoomTool extends HelpTool {
   constructor(canvas) {
     super(canvas);
 
