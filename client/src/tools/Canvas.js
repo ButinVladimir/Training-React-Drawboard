@@ -1,7 +1,5 @@
-export const DEFAULT_DELTA_X = 0.0;
-export const DEFAULT_DELTA_Y = 0.0;
-export const DEFAULT_ZOOM = 1.0;
-export const DEFAULT_ROTATION = 0.0;
+import ViewState from './ViewState';
+
 export const DEFAULT_WIDTH = 500;
 export const DEFAULT_HEIGHT = 500;
 export const DEFAULT_CANVAS_COLOR = '#fff';
@@ -10,11 +8,7 @@ export const BORDER_WIDTH = 3;
 
 class Canvas {
   constructor() {
-    this.deltaX = DEFAULT_DELTA_X;
-    this.deltaY = DEFAULT_DELTA_Y;
-    this.zoom = DEFAULT_ZOOM;
-    this.rotation = DEFAULT_ROTATION;
-
+    this.viewState = new ViewState();
     this.containerPositionX = 0;
     this.containerPositionY = 0;
 
@@ -44,41 +38,8 @@ class Canvas {
     this.screenContext = value.getContext('2d');
   }
 
-  outputCompletely() {
-    this.screenContext.resetTransform();
-    this.screenContext.clearRect(0, 0, this.screenCanvas.width, this.screenCanvas.height);
-
-    this.show();
-  }
-
-  changeDelta(deltaX, deltaY) {
-    this.hide();
-    this.deltaX = deltaX;
-    this.deltaY = deltaY;
-    this.show();
-  }
-
-  changeZoom(zoom) {
-    this.hide();
-    this.zoom = zoom;
-    this.show();
-  }
-
-  changeRotation(rotation) {
-    this.hide();
-    this.rotation = rotation;
-    this.show();
-  }
-
-  applyTransformations() {
-    this.screenContext.resetTransform();
-    this.screenContext.translate(this.deltaX, this.deltaY);
-    this.screenContext.rotate(this.rotation);
-    this.screenContext.scale(this.zoom, this.zoom);
-  }
-
   hide() {
-    this.applyTransformations();
+    this.viewState.applyTransformations(this.screenContext);
 
     this.screenContext.clearRect(
       -2 * BORDER_WIDTH, -2 * BORDER_WIDTH,
@@ -88,13 +49,25 @@ class Canvas {
   }
 
   show() {
-    this.applyTransformations();
+    this.viewState.applyTransformations(this.screenContext);
 
     this.screenContext.strokeStyle = BORDER_COLOR;
     this.screenContext.lineWidth = BORDER_WIDTH;
     this.screenContext.strokeRect(0, 0, DEFAULT_WIDTH, DEFAULT_HEIGHT);
 
     this.screenContext.drawImage(this.htmlCanvasElement, 0, 0);
+  }
+
+  showWithBuffer() {
+    this.show();
+    this.screenContext.drawImage(this.bufferCanvasElement, 0, 0);
+  }
+
+  outputCompletely() {
+    this.screenContext.resetTransform();
+    this.screenContext.clearRect(0, 0, this.screenCanvas.width, this.screenCanvas.height);
+
+    this.show();
   }
 
   clearBuffer() {
@@ -107,18 +80,26 @@ class Canvas {
     );
   }
 
-  updateAndShowBuffer(updateCb, ...args) {
+  updateAndShowBuffer(stateHandler, toolState) {
     this.clearBuffer();
-
-    this.bufferCanvasContext.scale(1 / this.zoom, 1 / this.zoom);
-    this.bufferCanvasContext.rotate(-this.rotation);
-    this.bufferCanvasContext.translate(-this.deltaX, -this.deltaY);
+    this.viewState.applyReverseTransformations(this.bufferCanvasContext);
     this.bufferCanvasContext.translate(-this.containerPositionX, -this.containerPositionY);
 
-    updateCb(this.bufferCanvasContext, ...args);
+    stateHandler.applyState(this.bufferCanvasContext, this.viewState, toolState);
 
-    this.show();
-    this.screenContext.drawImage(this.bufferCanvasElement, 0, 0);
+    this.showWithBuffer();
+  }
+
+  applyState(stateHandler, viewState, toolState) {
+    const oldViewState = this.viewState;
+    this.viewState = viewState;
+
+    this.viewState.applyReverseTransformations(this.htmlCanvasContext);
+    stateHandler.applyState(this.htmlCanvasContext, this.viewState, toolState);
+
+    this.viewState = oldViewState;
+
+    this.showWithBuffer();
   }
 
   appendBuffer() {

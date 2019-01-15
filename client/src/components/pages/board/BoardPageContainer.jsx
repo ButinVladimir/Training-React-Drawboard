@@ -66,15 +66,15 @@ class BoardPageContainer extends Component {
   }
 
   onMouseDown(event) {
-    this.selectedTool.onMouseDown(event);
+    this.selectedTool.screenHandler.onMouseDown(event);
   }
 
   onMouseUp(event) {
-    this.selectedTool.onMouseUp(event);
+    const drawEvent = this.selectedTool.screenHandler.onMouseUp(event);
   }
 
   onMouseMove(event) {
-    this.selectedTool.onMouseMove(event);
+    this.selectedTool.screenHandler.onMouseMove(event);
   }
 
   render() {

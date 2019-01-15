@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import LineToolOptions from './LineToolOptions';
+import LineToolState from './LineToolState';
 
 const widths = [1, 2, 3, 4, 5, 10, 20, 50];
 
@@ -11,27 +12,27 @@ class LineToolOptionsContainer extends Component {
     this.onSelectWidth = this.onSelectWidth.bind(this);
     this.onSelectColor = this.onSelectColor.bind(this);
 
-    const { width, color } = this.props;
+    const { toolState } = this.props;
 
     this.state = {
-      width,
-      color,
+      width: toolState.width,
+      color: toolState.color,
     };
   }
 
   onSelectWidth(width) {
-    const { onSelectWidth } = this.props;
+    const { toolState } = this.props;
     const parsedWidth = parseInt(width, 10);
 
     this.setState({ width: parsedWidth });
-    onSelectWidth(parsedWidth);
+    toolState.width = parsedWidth;
   }
 
   onSelectColor(color) {
-    const { onSelectColor } = this.props;
+    const { toolState } = this.props;
 
     this.setState({ color });
-    onSelectColor(color);
+    toolState.color = color;
   }
 
   render() {
@@ -50,10 +51,7 @@ class LineToolOptionsContainer extends Component {
 }
 
 LineToolOptionsContainer.propTypes = {
-  width: PropTypes.number.isRequired,
-  color: PropTypes.string.isRequired,
-  onSelectWidth: PropTypes.func.isRequired,
-  onSelectColor: PropTypes.func.isRequired,
+  toolState: PropTypes.instanceOf(LineToolState).isRequired,
 };
 
 export default LineToolOptionsContainer;

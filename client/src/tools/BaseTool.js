@@ -1,7 +1,12 @@
+import BaseToolScreenHandler from './BaseToolScreenHandler';
+
 class BaseTool {
   constructor(canvas) {
     this.canvas = canvas;
     this.isMouseDown = false;
+    this.toolState = null;
+    this.stateHandler = null;
+    this.screenHandlerValue = null;
   }
 
   static get name() {
@@ -12,16 +17,12 @@ class BaseTool {
     throw new Error('Method is not implemented');
   }
 
-  onMouseDown() {
-    this.isMouseDown = true;
-  }
+  get screenHandler() {
+    if (this.screenHandlerValue == null) {
+      this.screenHandlerValue = new BaseToolScreenHandler(this.toolState, this.stateHandler);
+    }
 
-  onMouseUp() {
-    this.isMouseDown = false;
-  }
-
-  onMouseMove(event) { // eslint-disable-line class-methods-use-this,no-unused-vars
-    throw new Error('Method is not implemented');
+    return this.screenHandlerValue;
   }
 }
 

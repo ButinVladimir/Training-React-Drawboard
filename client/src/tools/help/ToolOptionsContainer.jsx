@@ -1,42 +1,51 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ToolOptions from './ToolOptions';
+import ToolState from './ToolState';
 
 class ToolOptionsContainer extends Component {
   constructor(props) {
     super(props);
 
+    this.onRestore = this.onRestore.bind(this);
     this.onChangeSpeed = this.onChangeSpeed.bind(this);
     this.onSetDefaultSpeed = this.onSetDefaultSpeed.bind(this);
 
-    const { speed } = this.props;
-    const parsedSpeed = parseFloat(speed);
+    const { toolState } = this.props;
+    const parsedSpeed = parseFloat(toolState.speed);
 
     this.state = {
-      speed,
+      speed: parsedSpeed,
       parsedSpeed,
     };
   }
 
+  onRestore() {
+    const { onRestore } = this.props;
+
+    onRestore();
+  }
+
   onChangeSpeed(speed) {
-    const { onChangeSpeed } = this.props;
+    const { toolState } = this.props;
     const parsedSpeed = parseFloat(speed);
 
     this.setState({ speed, parsedSpeed });
-    onChangeSpeed(parsedSpeed);
+    toolState.speed = parsedSpeed;
   }
 
   onSetDefaultSpeed() {
-    const { onChangeSpeed, defaultSpeed } = this.props;
-    const parsedSpeed = parseFloat(defaultSpeed);
+    const { toolState } = this.props;
 
-    this.setState({ speed: defaultSpeed, parsedSpeed });
-    onChangeSpeed(parsedSpeed);
+    toolState.setDefaultSpeed();
+    this.setState({
+      speed: toolState.speed,
+      parsedSpeed: toolState.speed,
+    });
   }
 
   render() {
     const { speed, parsedSpeed } = this.state;
-    const { onRestore } = this.props;
 
     return (
       <ToolOptions
@@ -44,16 +53,14 @@ class ToolOptionsContainer extends Component {
         parsedSpeed={parsedSpeed}
         onChangeSpeed={this.onChangeSpeed}
         onSetDefaultSpeed={this.onSetDefaultSpeed}
-        onRestore={onRestore}
+        onRestore={this.onRestore}
       />
     );
   }
 }
 
 ToolOptionsContainer.propTypes = {
-  defaultSpeed: PropTypes.number.isRequired,
-  speed: PropTypes.number.isRequired,
-  onChangeSpeed: PropTypes.func.isRequired,
+  toolState: PropTypes.instanceOf(ToolState).isRequired,
   onRestore: PropTypes.func.isRequired,
 };
 
