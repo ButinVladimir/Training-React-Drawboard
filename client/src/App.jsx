@@ -19,7 +19,9 @@ class App extends Component {
 
     this.registerErrorHandlers = this.registerErrorHandlers.bind(this);
     this.registerDrawHandler = this.registerDrawHandler.bind(this);
+    this.registerGetImageHandler = this.registerGetImageHandler.bind(this);
     this.emitDrawEvent = this.emitDrawEvent.bind(this);
+    this.emitGetImageEvent = this.emitGetImageEvent.bind(this);
     this.onLogin = this.onLogin.bind(this);
   }
 
@@ -40,9 +42,19 @@ class App extends Component {
     socketService.setDrawHandler(onDraw);
   }
 
+  registerGetImageHandler(onGetImage) {
+    const { socketService } = this.props;
+    socketService.setGetImageHandler(onGetImage);
+  }
+
   emitDrawEvent(...args) {
     const { socketService } = this.props;
     socketService.emitDrawEvent(...args);
+  }
+
+  emitGetImageEvent() {
+    const { socketService } = this.props;
+    socketService.emitGetImageEvent();
   }
 
   render() {
@@ -60,7 +72,9 @@ class App extends Component {
                 <BoardPage
                   registerErrorHandlers={this.registerErrorHandlers}
                   registerDrawHandler={this.registerDrawHandler}
+                  registerGetImageHandler={this.registerGetImageHandler}
                   emitDrawEvent={this.emitDrawEvent}
+                  emitGetImageEvent={this.emitGetImageEvent}
                   toolsProvider={toolsProvider}
                   canvas={canvas}
                 />

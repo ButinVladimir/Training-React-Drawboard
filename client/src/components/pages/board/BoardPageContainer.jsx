@@ -14,6 +14,8 @@ class BoardPageContainer extends Component {
 
     this.onError = this.onError.bind(this);
     this.onDraw = this.onDraw.bind(this);
+    this.onDrawSingleOperation = this.onDrawSingleOperation.bind(this);
+    this.onGetImage = this.onGetImage.bind(this);
     this.onChangeTool = this.onChangeTool.bind(this);
     this.onResize = this.onResize.bind(this);
     this.onMouseDown = this.onMouseDown.bind(this);
@@ -28,12 +30,22 @@ class BoardPageContainer extends Component {
 
     this.canvasContainerRef = null;
     this.screenCanvasRef = null;
+    this.bufferLoaded = false;
+    this.buffer = [];
   }
 
   componentDidMount() {
-    const { registerErrorHandlers, registerDrawHandler } = this.props;
+    const {
+      registerErrorHandlers,
+      registerDrawHandler,
+      registerGetImageHandler,
+      emitGetImageEvent,
+    } = this.props;
+
     registerErrorHandlers(this.onError);
     registerDrawHandler(this.onDraw);
+    registerGetImageHandler(this.onGetImage);
+    emitGetImageEvent();
 
     window.addEventListener('resize', this.onResize);
     this.onResize();
@@ -62,6 +74,23 @@ class BoardPageContainer extends Component {
   }
 
   onDraw(viewStateObj, toolName, toolStateObj) {
+    if (this.bufferLoaded) {
+      this.onDrawSingleOperation(viewStateObj, toolName, toolStateObj);
+    } else {
+      this.buffer.push({ viewStateObj, toolName, toolStateObj });
+    }
+  }
+
+  onGetImage(imageData) {
+    const { canvas } = this.props;
+
+    canvas.addPreloadedImage(imageData, () => {
+      this.buffer.forEach(this.onDrawSingleOperation);
+      this.bufferLoaded = true;
+    });
+  }
+
+  onDrawSingleOperation(viewStateObj, toolName, toolStateObj) {
     const { canvas, toolsProvider } = this.props;
     const tool = toolsProvider.getTool(toolName);
     const viewState = ViewState.unserialize(viewStateObj);
@@ -127,7 +156,9 @@ class BoardPageContainer extends Component {
 BoardPageContainer.propTypes = {
   registerErrorHandlers: PropTypes.func.isRequired,
   registerDrawHandler: PropTypes.func.isRequired,
+  registerGetImageHandler: PropTypes.func.isRequired,
   emitDrawEvent: PropTypes.func.isRequired,
+  emitGetImageEvent: PropTypes.func.isRequired,
   toolsProvider: PropTypes.instanceOf(ToolsProvider).isRequired,
   canvas: PropTypes.instanceOf(Canvas).isRequired,
 };

@@ -33,7 +33,7 @@ class FigureToolStateHandler extends BaseToolStateHandler {
         context.lineTo(toolState.clientX, toolState.clientY);
       }
 
-      context.lineTo(toolState.points[0][0], toolState.points[0][1]);
+      context.closePath();
 
       if (toolState.addFill) {
         context.fillStyle = toolState.fillColor; // eslint-disable-line no-param-reassign

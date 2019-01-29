@@ -49,7 +49,17 @@ export default class SocketService {
       .on(socketEvents.DRAW, onDraw);
   }
 
+  setGetImageHandler(onGetImage) {
+    this.io
+      .off(socketEvents.GET_IMAGE)
+      .on(socketEvents.GET_IMAGE, onGetImage);
+  }
+
   emitDrawEvent(...args) {
     this.io.emit(socketEvents.DRAW, ...args);
+  }
+
+  emitGetImageEvent() {
+    this.io.emit(socketEvents.GET_IMAGE);
   }
 }
