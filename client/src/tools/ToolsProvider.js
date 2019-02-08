@@ -12,6 +12,10 @@ class ToolsProvider {
     }
 
     const { name } = ToolConstructor;
+    if (name === null || !(typeof name === 'string')) {
+      throw new TypeError('Tool name must be a string');
+    }
+
     if (this.registeredTools.has(name)) {
       throw new Error(`${name} has been already registered within the provider`);
     }
