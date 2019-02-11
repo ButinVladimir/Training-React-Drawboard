@@ -1,12 +1,12 @@
 import BaseToolScreenHandler from './BaseToolScreenHandler';
 
 class BaseTool {
-  constructor(canvas) {
+  constructor(canvas, toolState, stateHandler) {
     this.canvas = canvas;
+    this.toolState = toolState;
+    this.stateHandler = stateHandler;
+    this.screenHandler = new BaseToolScreenHandler(this.toolState, this.stateHandler);
     this.isMouseDown = false;
-    this.toolState = null;
-    this.stateHandler = null;
-    this.screenHandlerValue = null;
   }
 
   static get name() {
@@ -15,14 +15,6 @@ class BaseTool {
 
   get optionsElement() { // eslint-disable-line class-methods-use-this
     throw new Error('Method is not implemented');
-  }
-
-  get screenHandler() {
-    if (this.screenHandlerValue == null) {
-      this.screenHandlerValue = new BaseToolScreenHandler(this.toolState, this.stateHandler);
-    }
-
-    return this.screenHandlerValue;
   }
 
   onSelect() {
@@ -34,7 +26,7 @@ class BaseTool {
     return this.toolState.serialize();
   }
 
-  unserializeState(stateObj) { // eslint-disable-line class-methods-use-this,no-unused-vars
+  deserializeState(stateObj) { // eslint-disable-line class-methods-use-this,no-unused-vars
     throw new Error('Method is not implemented');
   }
 }

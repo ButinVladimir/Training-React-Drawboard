@@ -51,7 +51,7 @@ class RectangleToolState extends BaseFigureToolState {
     };
   }
 
-  static unserialize(stateObj) {
+  static deserialize(stateObj) {
     const state = new RectangleToolState();
     Object.assign(state, stateObj);
 

@@ -8,10 +8,7 @@ const LINE_TOOL_NAME = 'Line';
 
 class LineTool extends BaseTool {
   constructor(canvas) {
-    super(canvas);
-
-    this.toolState = new LineToolState();
-    this.stateHandler = new LineToolStateHandler(canvas);
+    super(canvas, new LineToolState(), new LineToolStateHandler(canvas));
   }
 
   static get name() {
@@ -27,8 +24,8 @@ class LineTool extends BaseTool {
     );
   }
 
-  unserializeState(stateObj) { // eslint-disable-line class-methods-use-this
-    return LineToolState.unserialize(stateObj);
+  deserializeState(stateObj) { // eslint-disable-line class-methods-use-this
+    return LineToolState.deserialize(stateObj);
   }
 }
 

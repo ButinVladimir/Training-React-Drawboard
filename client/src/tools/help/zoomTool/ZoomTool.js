@@ -6,11 +6,9 @@ const ZOOM_TOOL_NAME = 'Zoom';
 
 class ZoomTool extends HelpTool {
   constructor(canvas) {
-    super(canvas);
+    super(canvas, new ZoomToolState(), new ZoomToolStateHandler(canvas));
 
     this.toolKey = ZOOM_TOOL_NAME;
-    this.toolState = new ZoomToolState();
-    this.stateHandler = new ZoomToolStateHandler(canvas);
   }
 
   static get name() {

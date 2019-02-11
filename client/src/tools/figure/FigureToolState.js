@@ -68,7 +68,7 @@ class FigureToolState extends BaseFigureToolState {
     this.isAddingPoints = false;
   }
 
-  static unserialize(stateObj) {
+  static deserialize(stateObj) {
     const state = new FigureToolState();
     Object.assign(state, stateObj);
 

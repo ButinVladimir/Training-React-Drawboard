@@ -113,7 +113,6 @@ class Canvas {
   addPreloadedImage(imageData, onImageLoaded) {
     const image = new Image();
     image.onload = () => {
-      console.debug('Image preloaded');
       this.htmlCanvasContext.drawImage(image, 0, 0);
       this.show();
       onImageLoaded();

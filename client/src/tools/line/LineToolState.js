@@ -48,7 +48,7 @@ class LineToolState extends BaseLineToolState {
     };
   }
 
-  static unserialize(stateObj) {
+  static deserialize(stateObj) {
     const state = new LineToolState();
     Object.assign(state, stateObj);
 

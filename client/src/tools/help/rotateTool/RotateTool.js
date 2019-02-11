@@ -6,11 +6,9 @@ const ROTATE_TOOL_NAME = 'Rotate';
 
 class RotateTool extends HelpTool {
   constructor(canvas) {
-    super(canvas);
+    super(canvas, new RotateToolState(), new RotateToolStateHandler(canvas));
 
     this.toolKey = ROTATE_TOOL_NAME;
-    this.toolState = new RotateToolState();
-    this.stateHandler = new RotateToolStateHandler(canvas);
   }
 
   static get name() {

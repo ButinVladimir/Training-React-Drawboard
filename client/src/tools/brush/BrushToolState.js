@@ -36,7 +36,7 @@ class BrushToolState extends BaseLineToolState {
     };
   }
 
-  static unserialize(stateObj) {
+  static deserialize(stateObj) {
     const state = new BrushToolState();
     Object.assign(state, stateObj);
 

@@ -52,7 +52,7 @@ class ViewState {
     };
   }
 
-  static unserialize(viewStateObj) {
+  static deserialize(viewStateObj) {
     return new ViewState(
       viewStateObj.deltaX,
       viewStateObj.deltaY,

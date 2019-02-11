@@ -8,10 +8,7 @@ const FIGURE_TOOL_NAME = 'Figure';
 
 class FigureTool extends BaseTool {
   constructor(canvas) {
-    super(canvas);
-
-    this.toolState = new FigureToolState();
-    this.stateHandler = new FigureToolStateHandler(canvas);
+    super(canvas, new FigureToolState(), new FigureToolStateHandler(canvas));
   }
 
   static get name() {
@@ -32,8 +29,8 @@ class FigureTool extends BaseTool {
     this.toolState.restore();
   }
 
-  unserializeState(stateObj) { // eslint-disable-line class-methods-use-this
-    return FigureToolState.unserialize(stateObj);
+  deserializeState(stateObj) { // eslint-disable-line class-methods-use-this
+    return FigureToolState.deserialize(stateObj);
   }
 }
 

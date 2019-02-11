@@ -93,8 +93,8 @@ class BoardPageContainer extends Component {
   onDrawSingleOperation(viewStateObj, toolName, toolStateObj) {
     const { canvas, toolsProvider } = this.props;
     const tool = toolsProvider.getTool(toolName);
-    const viewState = ViewState.unserialize(viewStateObj);
-    const toolState = tool.unserializeState(toolStateObj);
+    const viewState = ViewState.deserialize(viewStateObj);
+    const toolState = tool.deserializeState(toolStateObj);
 
     canvas.applyState(tool.stateHandler, viewState, toolState);
   }

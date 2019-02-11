@@ -80,14 +80,14 @@ describe('ViewState', () => {
     });
   });
 
-  it('unserializes', () => {
+  it('deserializes', () => {
     const viewStateObject = {
       deltaX,
       deltaY,
       zoom,
       rotation,
     };
-    const viewState = ViewState.unserialize(viewStateObject);
+    const viewState = ViewState.deserialize(viewStateObject);
 
     expect(viewState).toMatchObject({
       deltaX,

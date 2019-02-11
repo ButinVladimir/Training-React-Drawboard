@@ -51,7 +51,7 @@ class CircleToolState extends BaseFigureToolState {
     };
   }
 
-  static unserialize(stateObj) {
+  static deserialize(stateObj) {
     const state = new CircleToolState();
     Object.assign(state, stateObj);
 

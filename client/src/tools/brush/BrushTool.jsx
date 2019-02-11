@@ -8,10 +8,7 @@ const BRUSH_TOOL_NAME = 'Brush';
 
 class BrushTool extends BaseTool {
   constructor(canvas) {
-    super(canvas);
-
-    this.toolState = new BrushToolState();
-    this.stateHandler = new BrushToolStateHandler(canvas);
+    super(canvas, new BrushToolState(), new BrushToolStateHandler(canvas));
   }
 
   static get name() {
@@ -27,8 +24,8 @@ class BrushTool extends BaseTool {
     );
   }
 
-  unserializeState(stateObj) { // eslint-disable-line class-methods-use-this
-    return BrushToolState.unserialize(stateObj);
+  deserializeState(stateObj) { // eslint-disable-line class-methods-use-this
+    return BrushToolState.deserialize(stateObj);
   }
 }
 

@@ -1,11 +1,12 @@
 import BaseToolStateHandler from './BaseToolStateHandler';
+import Canvas from './Canvas';
 
 describe('BaseToolStateHandler', () => {
   let stateHandler;
   let canvas;
 
   beforeEach(() => {
-    canvas = {};
+    canvas = new Canvas();
     stateHandler = new BaseToolStateHandler(canvas);
   });
 

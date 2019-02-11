@@ -7,7 +7,7 @@
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "2.1.1",
+    "react-scripts": "^2.1.4",
     "socket.io-client": "^2.2.0"
   },
   "scripts": {
@@ -32,6 +32,7 @@
     "eslint-plugin-jest": "^22.1.0",
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.11.1",
+    "jest-canvas-mock": "^2.0.0-alpha.3",
     "stylelint": "^9.9.0",
     "stylelint-config-recommended": "^2.1.0"
   }

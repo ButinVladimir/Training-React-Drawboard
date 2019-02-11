@@ -5,8 +5,8 @@ import HelpToolOptions from '../../components/tools/help/HelpToolOptionsContaine
 const DEFAULT_TOOL_KEY = 'toolKey';
 
 class HelpTool extends BaseTool {
-  constructor(canvas) {
-    super(canvas);
+  constructor(canvas, toolState, stateHandler) {
+    super(canvas, toolState, stateHandler);
 
     this.toolKey = DEFAULT_TOOL_KEY;
 

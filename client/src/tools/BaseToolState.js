@@ -15,7 +15,7 @@ class BaseToolState {
     throw new Error('Method is not implemented');
   }
 
-  static unserialize(stateObj) { // eslint-disable-line class-methods-use-this,no-unused-vars
+  static deserialize(stateObj) { // eslint-disable-line class-methods-use-this,no-unused-vars
     throw new Error('Method is not implemented');
   }
 }

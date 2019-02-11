@@ -6,11 +6,9 @@ const MOVE_TOOL_NAME = 'Move';
 
 class MoveTool extends HelpTool {
   constructor(canvas) {
-    super(canvas);
+    super(canvas, new MoveToolState(), new MoveToolStateHandler(canvas));
 
     this.toolKey = MOVE_TOOL_NAME;
-    this.toolState = new MoveToolState();
-    this.stateHandler = new MoveToolStateHandler(canvas);
   }
 
   static get name() {

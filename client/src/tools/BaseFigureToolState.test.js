@@ -3,8 +3,9 @@ import BaseFigureToolState from './BaseFigureToolState';
 
 describe('BaseFigureToolState', () => {
   it('instantiated properly', () => {
-    const tool = new BaseFigureToolState();
-    expect(tool).toMatchObject({
+    const toolState = new BaseFigureToolState();
+
+    expect(toolState).toMatchObject({
       addBorder: true,
       borderWidth: 1,
       borderColor: '#000000',
@@ -14,7 +15,8 @@ describe('BaseFigureToolState', () => {
   });
 
   it('implements BaseToolState', () => {
-    const tool = new BaseFigureToolState();
-    expect(tool).toBeInstanceOf(BaseToolState);
+    const toolState = new BaseFigureToolState();
+
+    expect(toolState).toBeInstanceOf(BaseToolState);
   });
 });

@@ -8,10 +8,7 @@ const CIRCLE_TOOL_NAME = 'Circle';
 
 class CircleTool extends BaseTool {
   constructor(canvas) {
-    super(canvas);
-
-    this.toolState = new CircleToolState();
-    this.stateHandler = new CircleToolStateHandler(canvas);
+    super(canvas, new CircleToolState(), new CircleToolStateHandler(canvas));
   }
 
   static get name() {
@@ -27,8 +24,8 @@ class CircleTool extends BaseTool {
     );
   }
 
-  unserializeState(stateObj) { // eslint-disable-line class-methods-use-this
-    return CircleToolState.unserialize(stateObj);
+  deserializeState(stateObj) { // eslint-disable-line class-methods-use-this
+    return CircleToolState.deserialize(stateObj);
   }
 }
 

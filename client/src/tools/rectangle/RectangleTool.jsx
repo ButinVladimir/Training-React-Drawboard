@@ -8,10 +8,7 @@ const RECTANGLE_TOOL_NAME = 'Rectangle';
 
 class RectangleTool extends BaseTool {
   constructor(canvas) {
-    super(canvas);
-
-    this.toolState = new RectangleToolState();
-    this.stateHandler = new RectangleToolStateHandler(canvas);
+    super(canvas, new RectangleToolState(), new RectangleToolStateHandler(canvas));
   }
 
   static get name() {
@@ -27,8 +24,8 @@ class RectangleTool extends BaseTool {
     );
   }
 
-  unserializeState(stateObj) { // eslint-disable-line class-methods-use-this
-    return RectangleToolState.unserialize(stateObj);
+  deserializeState(stateObj) { // eslint-disable-line class-methods-use-this
+    return RectangleToolState.deserialize(stateObj);
   }
 }
 

@@ -43,7 +43,7 @@ class ToolState extends BaseToolState {
     return null;
   }
 
-  static unserialize() {
+  static deserialize() {
     return null;
   }
 }
