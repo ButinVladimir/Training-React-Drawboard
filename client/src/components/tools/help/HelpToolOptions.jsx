@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
-const ToolOptions = ({
+const HelpToolOptions = ({
   speed,
   parsedSpeed,
   onChangeSpeed,
@@ -25,7 +25,7 @@ const ToolOptions = ({
   </Fragment>
 );
 
-ToolOptions.propTypes = {
+HelpToolOptions.propTypes = {
   speed: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
@@ -36,4 +36,4 @@ ToolOptions.propTypes = {
   onRestore: PropTypes.func.isRequired,
 };
 
-export default ToolOptions;
+export default HelpToolOptions;

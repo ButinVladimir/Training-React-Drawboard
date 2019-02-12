@@ -26,6 +26,7 @@ class FigureTool extends BaseTool {
 
   onSelect() {
     super.onSelect();
+
     this.toolState.restore();
   }
 

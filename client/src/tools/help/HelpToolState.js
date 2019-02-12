@@ -1,6 +1,6 @@
 import BaseToolState from '../BaseToolState';
 
-class ToolState extends BaseToolState {
+class HelpToolState extends BaseToolState {
   constructor() {
     super();
 
@@ -48,4 +48,4 @@ class ToolState extends BaseToolState {
   }
 }
 
-export default ToolState;
+export default HelpToolState;

@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HelpTool returns options element 1`] = `
+<HelpToolOptions
+  onChangeSpeed={[Function]}
+  onRestore={[Function]}
+  onSetDefaultSpeed={[Function]}
+  parsedSpeed={0}
+  speed={0}
+/>
+`;

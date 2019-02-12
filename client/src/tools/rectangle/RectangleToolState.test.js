@@ -1,13 +1,16 @@
-import LineToolState from './LineToolState';
+import RectangleToolState from './RectangleToolState';
 
-describe('LineToolState', () => {
+describe('RectangleToolState', () => {
   it('is instantiated properly', () => {
-    const toolState = new LineToolState();
+    const toolState = new RectangleToolState();
 
-    expect(toolState).toBeInstanceOf(LineToolState);
+    expect(toolState).toBeInstanceOf(RectangleToolState);
     expect(toolState).toMatchObject({
-      width: 1,
-      color: '#000000',
+      addBorder: true,
+      borderWidth: 1,
+      borderColor: '#000000',
+      addFill: true,
+      fillColor: '#ff0000',
       anchorX: 0,
       anchorY: 0,
       clientX: 0,
@@ -16,7 +19,7 @@ describe('LineToolState', () => {
   });
 
   it('handles OnMouseDown event', () => {
-    const toolState = new LineToolState();
+    const toolState = new RectangleToolState();
     toolState.onMouseDown({
       clientX: 1,
       clientY: 2,
@@ -31,7 +34,7 @@ describe('LineToolState', () => {
   });
 
   it('handles OnMouseMove event', () => {
-    const toolState = new LineToolState();
+    const toolState = new RectangleToolState();
     toolState.onMouseDown({
       clientX: 1,
       clientY: 2,
@@ -50,7 +53,7 @@ describe('LineToolState', () => {
   });
 
   it('handles OnMouseUp event', () => {
-    const toolState = new LineToolState();
+    const toolState = new RectangleToolState();
     toolState.onMouseDown({
       clientX: 1,
       clientY: 2,
@@ -70,7 +73,7 @@ describe('LineToolState', () => {
   });
 
   it('fixes relative coordinates', () => {
-    const toolState = new LineToolState();
+    const toolState = new RectangleToolState();
     toolState.onMouseDown({
       clientX: 1,
       clientY: 2,
@@ -90,7 +93,7 @@ describe('LineToolState', () => {
   });
 
   it('can be serialized', () => {
-    const toolState = new LineToolState();
+    const toolState = new RectangleToolState();
     toolState.onMouseDown({
       clientX: 1,
       clientY: 2,
@@ -99,8 +102,11 @@ describe('LineToolState', () => {
       clientX: 3,
       clientY: 4,
     });
-    toolState.width = 7;
-    toolState.color = '#123456';
+    toolState.addBorder = false;
+    toolState.borderColor = '#123456';
+    toolState.borderWidth = 6;
+    toolState.addFill = true;
+    toolState.fillColor = '#abcdef';
 
     const serializedObject = toolState.serialize();
 
@@ -109,8 +115,11 @@ describe('LineToolState', () => {
       anchorY: 2,
       clientX: 3,
       clientY: 4,
-      width: 7,
-      color: '#123456',
+      addBorder: false,
+      borderColor: '#123456',
+      borderWidth: 6,
+      addFill: true,
+      fillColor: '#abcdef',
     });
   });
 
@@ -120,13 +129,16 @@ describe('LineToolState', () => {
       anchorY: 2,
       clientX: 3,
       clientY: 4,
-      width: 7,
-      color: '#123456',
+      addBorder: false,
+      borderColor: '#123456',
+      borderWidth: 6,
+      addFill: true,
+      fillColor: '#abcdef',
     };
 
-    const toolState = LineToolState.deserialize(serializedObject);
+    const toolState = RectangleToolState.deserialize(serializedObject);
 
-    expect(toolState).toBeInstanceOf(LineToolState);
+    expect(toolState).toBeInstanceOf(RectangleToolState);
     expect(toolState).toMatchObject(serializedObject);
   });
 });

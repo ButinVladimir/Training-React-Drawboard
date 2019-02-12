@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BrushTool returns options element 1`] = `
+<BaseLineToolOptions
+  color="#000000"
+  onSelectColor={[Function]}
+  onSelectWidth={[Function]}
+  width={1}
+  widths={
+    Array [
+      1,
+      2,
+      3,
+      4,
+      5,
+      10,
+      20,
+      50,
+    ]
+  }
+/>
+`;

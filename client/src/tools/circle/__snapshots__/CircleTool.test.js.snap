@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CircleTool returns options element 1`] = `
+<BaseFigureToolOptions
+  addBorder={true}
+  addFill={true}
+  borderColor="#000000"
+  borderWidth={1}
+  fillColor="#ff0000"
+  onChangeAddBorder={[Function]}
+  onChangeAddFill={[Function]}
+  onSelectBorderColor={[Function]}
+  onSelectBorderWidth={[Function]}
+  onSelectFillColor={[Function]}
+  widths={
+    Array [
+      1,
+      2,
+      3,
+      4,
+      5,
+      10,
+      20,
+      50,
+    ]
+  }
+/>
+`;

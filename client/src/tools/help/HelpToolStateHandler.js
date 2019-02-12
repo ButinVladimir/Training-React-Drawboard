@@ -1,6 +1,6 @@
 import BaseToolStateHandler from '../BaseToolStateHandler';
 
-class ToolStateHandler extends BaseToolStateHandler {
+class HelpToolStateHandler extends BaseToolStateHandler {
   onMouseMove(toolState) {
     this.applyState(null, null, toolState);
   }
@@ -27,4 +27,4 @@ class ToolStateHandler extends BaseToolStateHandler {
   }
 }
 
-export default ToolStateHandler;
+export default HelpToolStateHandler;
