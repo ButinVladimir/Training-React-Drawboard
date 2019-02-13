@@ -14,13 +14,13 @@ const BaseLineToolOptions = ({
     <Fragment>
       <div className="tool-option-container">
         <strong>Width </strong>
-        <select value={width} onChange={e => onSelectWidth(e.target.value)}>
+        <select name="width" value={width} onChange={e => onSelectWidth(e.target.value)}>
           {widthsOptions}
         </select>
       </div>
       <div className="tool-option-container">
         <strong>Color </strong>
-        <input type="color" value={color} onChange={e => onSelectColor(e.target.value)} />
+        <input name="color" type="color" value={color} onChange={e => onSelectColor(e.target.value)} />
       </div>
     </Fragment>
   );

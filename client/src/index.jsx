@@ -9,6 +9,8 @@ import addTools from './tools/addTools';
 import { register } from './serviceWorker';
 import './style.css';
 
+require('dotenv').config();
+
 const socketService = new SocketService();
 const canvas = new Canvas();
 const toolsProvider = new ToolsProvider(canvas);

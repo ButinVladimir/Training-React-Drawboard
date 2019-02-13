@@ -2,6 +2,7 @@ import BrushToolStateHandler from './BrushToolStateHandler';
 import BrushToolState from './BrushToolState';
 import Canvas from '../Canvas';
 import ViewState from '../ViewState';
+import getOperationsProxy from '../../helpers/getOperationsProxy';
 
 describe('BrushToolStateHandler', () => {
   it('handles OnMouseMove event', () => {
@@ -44,15 +45,7 @@ describe('BrushToolStateHandler', () => {
     canvas.screenCanvas = document.createElement('canvas');
 
     const operations = [];
-    const contextProxy = new Proxy(canvas.screenContext, {
-      get: (object, property) => {
-        if (typeof object[property] === 'function') {
-          return (...args) => { operations.push([property, ...args]); };
-        }
-
-        return Reflect.get(object, property);
-      },
-    });
+    const contextProxy = getOperationsProxy(canvas.screenContext, operations);
 
     const viewState = new ViewState(1, 2, 3, 4);
 
@@ -80,15 +73,7 @@ describe('BrushToolStateHandler', () => {
     canvas.screenCanvas = document.createElement('canvas');
 
     const operations = [];
-    const contextProxy = new Proxy(canvas.screenContext, {
-      get: (object, property) => {
-        if (typeof object[property] === 'function') {
-          return (...args) => { operations.push([property, ...args]); };
-        }
-
-        return Reflect.get(object, property);
-      },
-    });
+    const contextProxy = getOperationsProxy(canvas.screenContext, operations);
 
     const viewState = new ViewState(1, 2, 3, 4);
 

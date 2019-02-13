@@ -1,0 +1,178 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoginPage renders properly 1`] = `
+<div
+  className="login-container"
+>
+  <div
+    className="row"
+  >
+    <div
+      className="col header"
+    >
+      Room:
+    </div>
+    <div
+      className="col"
+    >
+      <input
+        className="input"
+        name="room"
+        onChange={[Function]}
+        value=""
+      />
+    </div>
+  </div>
+  <div
+    className="row right"
+  >
+    <div
+      className="col"
+    >
+      <button
+        disabled={false}
+        name="enter"
+        onClick={[Function]}
+        type="button"
+      >
+        Log in
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`LoginPage renders properly when form has error 1`] = `
+<div
+  className="login-container"
+>
+  <div
+    className="row"
+  >
+    <div
+      className="col header"
+    >
+      Room:
+    </div>
+    <div
+      className="col"
+    >
+      <input
+        className="input"
+        name="room"
+        onChange={[Function]}
+        value=""
+      />
+    </div>
+  </div>
+  <div
+    className="row"
+  >
+    <div
+      className="col"
+    >
+      An error occurred
+    </div>
+  </div>
+  <div
+    className="row right"
+  >
+    <div
+      className="col"
+    >
+      <button
+        disabled={false}
+        name="enter"
+        onClick={[Function]}
+        type="button"
+      >
+        Log in
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`LoginPage renders properly when form is locked 1`] = `
+<div
+  className="login-container"
+>
+  <div
+    className="row"
+  >
+    <div
+      className="col header"
+    >
+      Room:
+    </div>
+    <div
+      className="col"
+    >
+      <input
+        className="input"
+        name="room"
+        onChange={[Function]}
+        value=""
+      />
+    </div>
+  </div>
+  <div
+    className="row right"
+  >
+    <div
+      className="col"
+    >
+      <button
+        disabled={true}
+        name="enter"
+        onClick={[Function]}
+        type="button"
+      >
+        Log in
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`LoginPage renders properly when room has value 1`] = `
+<div
+  className="login-container"
+>
+  <div
+    className="row"
+  >
+    <div
+      className="col header"
+    >
+      Room:
+    </div>
+    <div
+      className="col"
+    >
+      <input
+        className="input"
+        name="room"
+        onChange={[Function]}
+        value="The Room"
+      />
+    </div>
+  </div>
+  <div
+    className="row right"
+  >
+    <div
+      className="col"
+    >
+      <button
+        disabled={false}
+        name="enter"
+        onClick={[Function]}
+        type="button"
+      >
+        Log in
+      </button>
+    </div>
+  </div>
+</div>
+`;

@@ -11,16 +11,16 @@ const HelpToolOptions = ({
   <Fragment>
     <div className="tool-option-container">
       <strong>Speed </strong>
-      <input type="text" value={speed} onChange={(e) => { onChangeSpeed(e.target.value); }} />
+      <input type="text" name="speed" value={speed} onChange={(e) => { onChangeSpeed(e.target.value); }} />
       <span>
         {`(${parsedSpeed})`}
       </span>
     </div>
     <div className="tool-option-container">
-      <button type="button" onClick={onSetDefaultSpeed}>Set default speed</button>
+      <button type="button" name="set-default-speed" onClick={onSetDefaultSpeed}>Set default speed</button>
     </div>
     <div className="tool-option-container">
-      <button type="button" onClick={onRestore}>Restore</button>
+      <button type="button" name="restore" onClick={onRestore}>Restore</button>
     </div>
   </Fragment>
 );

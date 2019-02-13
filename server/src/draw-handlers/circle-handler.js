@@ -19,5 +19,4 @@ export default (context, viewState, toolState) => {
     context.strokeStyle = toolState.borderColor; // eslint-disable-line no-param-reassign
     context.stroke();
   }
-
 };

@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HelpToolOptions renders properly 1`] = `
+<Fragment>
+  <div
+    className="tool-option-container"
+  >
+    <strong>
+      Speed 
+    </strong>
+    <input
+      name="speed"
+      onChange={[Function]}
+      type="text"
+      value="2"
+    />
+    <span>
+      (2)
+    </span>
+  </div>
+  <div
+    className="tool-option-container"
+  >
+    <button
+      name="set-default-speed"
+      onClick={[Function]}
+      type="button"
+    >
+      Set default speed
+    </button>
+  </div>
+  <div
+    className="tool-option-container"
+  >
+    <button
+      name="restore"
+      onClick={[Function]}
+      type="button"
+    >
+      Restore
+    </button>
+  </div>
+</Fragment>
+`;

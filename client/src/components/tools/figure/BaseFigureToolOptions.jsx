@@ -20,25 +20,25 @@ const BaseFigureToolOptions = ({
     <Fragment>
       <div className="tool-option-container">
         <strong>Add border </strong>
-        <input type="checkbox" checked={addBorder} onChange={onChangeAddBorder} />
+        <input name="add-border" type="checkbox" checked={addBorder} onChange={onChangeAddBorder} />
       </div>
       <div className="tool-option-container">
         <strong>Border Width </strong>
-        <select value={borderWidth} onChange={e => onSelectBorderWidth(e.target.value)}>
+        <select name="border-width" value={borderWidth} onChange={e => onSelectBorderWidth(e.target.value)}>
           {widthsOptions}
         </select>
       </div>
       <div className="tool-option-container">
         <strong>Border color </strong>
-        <input type="color" value={borderColor} onChange={e => onSelectBorderColor(e.target.value)} />
+        <input name="border-color" type="color" value={borderColor} onChange={e => onSelectBorderColor(e.target.value)} />
       </div>
       <div className="tool-option-container">
         <strong>Add fill </strong>
-        <input type="checkbox" checked={addFill} onChange={onChangeAddFill} />
+        <input name="add-fill" type="checkbox" checked={addFill} onChange={onChangeAddFill} />
       </div>
       <div className="tool-option-container">
         <strong>Fill color </strong>
-        <input type="color" value={fillColor} onChange={e => onSelectFillColor(e.target.value)} />
+        <input name="fill-color" type="color" value={fillColor} onChange={e => onSelectFillColor(e.target.value)} />
       </div>
     </Fragment>
   );

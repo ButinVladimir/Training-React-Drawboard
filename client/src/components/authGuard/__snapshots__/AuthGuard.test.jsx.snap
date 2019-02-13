@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AuthGuard renders properly when logged in 1`] = `
+<Fragment>
+  <div />
+</Fragment>
+`;
+
+exports[`AuthGuard renders properly when not logged in 1`] = `
+<Redirect
+  push={false}
+  to="/login"
+/>
+`;

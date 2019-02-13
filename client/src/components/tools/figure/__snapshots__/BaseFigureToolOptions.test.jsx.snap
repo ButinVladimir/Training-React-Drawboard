@@ -1,0 +1,101 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HelpToolOptions renders properly 1`] = `
+<Fragment>
+  <div
+    className="tool-option-container"
+  >
+    <strong>
+      Add border 
+    </strong>
+    <input
+      checked={true}
+      name="add-border"
+      onChange={[Function]}
+      type="checkbox"
+    />
+  </div>
+  <div
+    className="tool-option-container"
+  >
+    <strong>
+      Border Width 
+    </strong>
+    <select
+      name="border-width"
+      onChange={[Function]}
+      value={3}
+    >
+      <option
+        key="1"
+        value={1}
+      >
+        1
+      </option>
+      <option
+        key="2"
+        value={2}
+      >
+        2
+      </option>
+      <option
+        key="3"
+        value={3}
+      >
+        3
+      </option>
+      <option
+        key="4"
+        value={4}
+      >
+        4
+      </option>
+      <option
+        key="5"
+        value={5}
+      >
+        5
+      </option>
+    </select>
+  </div>
+  <div
+    className="tool-option-container"
+  >
+    <strong>
+      Border color 
+    </strong>
+    <input
+      name="border-color"
+      onChange={[Function]}
+      type="color"
+      value="#123"
+    />
+  </div>
+  <div
+    className="tool-option-container"
+  >
+    <strong>
+      Add fill 
+    </strong>
+    <input
+      checked={true}
+      name="add-fill"
+      onChange={[Function]}
+      type="checkbox"
+    />
+  </div>
+  <div
+    className="tool-option-container"
+  >
+    <strong>
+      Fill color 
+    </strong>
+    <input
+      name="fill-color"
+      onChange={[Function]}
+      type="color"
+      value="#456"
+    />
+  </div>
+</Fragment>
+`;

@@ -13,7 +13,7 @@ const LoginPage = ({
     <div className="row">
       <div className="col header">Room:</div>
       <div className="col">
-        <input className="input" value={room} onChange={e => onSetRoom(e.target.value)} />
+        <input className="input" name="room" value={room} onChange={e => onSetRoom(e.target.value)} />
       </div>
     </div>
     {errorMessage && (
@@ -25,7 +25,7 @@ const LoginPage = ({
     )}
     <div className="row right">
       <div className="col">
-        <button type="button" disabled={locked} onClick={onLogin}>Log in</button>
+        <button type="button" name="enter" disabled={locked} onClick={onLogin}>Log in</button>
       </div>
     </div>
   </div>

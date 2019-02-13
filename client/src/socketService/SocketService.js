@@ -3,7 +3,8 @@ import * as socketEvents from './socket-events';
 
 export default class SocketService {
   constructor() {
-    this.io = io('http://localhost:8000/', {
+    console.dir(process.env);
+    this.io = io(process.env.REACT_APP_SERVER_URL, {
       autoConnect: false,
       reconnection: false,
     });
