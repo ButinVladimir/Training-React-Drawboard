@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BaseFigureToolOptionsContainer renders properly 1`] = `
+<BaseFigureToolOptions
+  addBorder={false}
+  addFill={true}
+  borderColor="#123"
+  borderWidth={3}
+  fillColor="#456"
+  onChangeAddBorder={[Function]}
+  onChangeAddFill={[Function]}
+  onSelectBorderColor={[Function]}
+  onSelectBorderWidth={[Function]}
+  onSelectFillColor={[Function]}
+  widths={
+    Array [
+      1,
+      2,
+      3,
+      4,
+      5,
+      10,
+      20,
+      50,
+    ]
+  }
+/>
+`;

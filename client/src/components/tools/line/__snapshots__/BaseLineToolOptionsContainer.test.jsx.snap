@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BaseLineToolOptionsContainer renders properly 1`] = `
+<BaseLineToolOptions
+  color="#123"
+  onSelectColor={[Function]}
+  onSelectWidth={[Function]}
+  width={3}
+  widths={
+    Array [
+      1,
+      2,
+      3,
+      4,
+      5,
+      10,
+      20,
+      50,
+    ]
+  }
+/>
+`;

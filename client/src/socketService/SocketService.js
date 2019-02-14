@@ -3,7 +3,6 @@ import * as socketEvents from './socket-events';
 
 export default class SocketService {
   constructor() {
-    console.dir(process.env);
     this.io = io(process.env.REACT_APP_SERVER_URL, {
       autoConnect: false,
       reconnection: false,

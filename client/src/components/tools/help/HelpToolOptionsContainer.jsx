@@ -7,7 +7,6 @@ class HelpToolOptionsContainer extends Component {
   constructor(props) {
     super(props);
 
-    this.onRestore = this.onRestore.bind(this);
     this.onChangeSpeed = this.onChangeSpeed.bind(this);
     this.onSetDefaultSpeed = this.onSetDefaultSpeed.bind(this);
 
@@ -18,12 +17,6 @@ class HelpToolOptionsContainer extends Component {
       speed: parsedSpeed,
       parsedSpeed,
     };
-  }
-
-  onRestore() {
-    const { onRestore } = this.props;
-
-    onRestore();
   }
 
   onChangeSpeed(speed) {
@@ -46,6 +39,7 @@ class HelpToolOptionsContainer extends Component {
 
   render() {
     const { speed, parsedSpeed } = this.state;
+    const { onRestore } = this.props;
 
     return (
       <HelpToolOptions
@@ -53,7 +47,7 @@ class HelpToolOptionsContainer extends Component {
         parsedSpeed={parsedSpeed}
         onChangeSpeed={this.onChangeSpeed}
         onSetDefaultSpeed={this.onSetDefaultSpeed}
-        onRestore={this.onRestore}
+        onRestore={onRestore}
       />
     );
   }

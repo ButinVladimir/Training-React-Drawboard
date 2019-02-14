@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoginPageContainer renders properly when user is logged in 1`] = `
+<Fragment>
+  <Redirect
+    push={false}
+    to="/board"
+  />
+</Fragment>
+`;
+
+exports[`LoginPageContainer renders properly when user is not logged in 1`] = `
+<Fragment>
+  <LoginPage
+    errorMessage=""
+    locked={false}
+    onLogin={[Function]}
+    onSetRoom={[Function]}
+    room=""
+  />
+</Fragment>
+`;
