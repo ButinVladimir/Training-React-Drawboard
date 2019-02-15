@@ -84,20 +84,14 @@ class Canvas {
     this.clearBuffer();
     this.viewState.applyReverseTransformations(this.bufferCanvasContext);
     this.bufferCanvasContext.translate(-this.containerPositionX, -this.containerPositionY);
-
     stateHandler.applyState(this.bufferCanvasContext, this.viewState, toolState);
 
     this.showWithBuffer();
   }
 
   applyState(stateHandler, viewState, toolState) {
-    const oldViewState = this.viewState;
-    this.viewState = viewState;
-
-    this.viewState.applyReverseTransformations(this.htmlCanvasContext);
-    stateHandler.applyState(this.htmlCanvasContext, this.viewState, toolState);
-
-    this.viewState = oldViewState;
+    viewState.applyReverseTransformations(this.htmlCanvasContext);
+    stateHandler.applyState(this.htmlCanvasContext, viewState, toolState);
 
     this.showWithBuffer();
   }
@@ -110,14 +104,17 @@ class Canvas {
     this.show();
   }
 
-  addPreloadedImage(imageData, onImageLoaded) {
-    const image = new Image();
-    image.onload = () => {
-      this.htmlCanvasContext.drawImage(image, 0, 0);
-      this.show();
-      onImageLoaded();
-    };
-    image.src = imageData;
+  addPreloadedImage(imageData) {
+    return new Promise((resolve) => {
+      const image = new Image();
+      image.onload = () => {
+        this.htmlCanvasContext.drawImage(image, 0, 0);
+        this.show();
+
+        resolve();
+      };
+      image.src = imageData;
+    });
   }
 }
 

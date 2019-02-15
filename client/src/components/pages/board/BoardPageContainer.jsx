@@ -81,13 +81,12 @@ class BoardPageContainer extends Component {
     }
   }
 
-  onGetImage(imageData) {
+  async onGetImage(imageData) {
     const { canvas } = this.props;
 
-    canvas.addPreloadedImage(imageData, () => {
-      this.buffer.forEach(this.onDrawSingleOperation);
-      this.bufferLoaded = true;
-    });
+    await canvas.addPreloadedImage(imageData);
+    this.buffer.forEach(this.onDrawSingleOperation);
+    this.bufferLoaded = true;
   }
 
   onDrawSingleOperation(viewStateObj, toolName, toolStateObj) {

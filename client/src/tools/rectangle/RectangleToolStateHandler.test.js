@@ -66,9 +66,10 @@ describe('RectangleToolStateHandler', () => {
     expect(canvas.screenContext.fillStyle).toBe('#abcdef');
     expect(canvas.screenContext.lineWidth).toBe(3 * 7);
     expect(canvas.screenContext.strokeStyle).toBe('#123456');
-    expect(operations.length).toBe(2);
-    expect(operations[0]).toMatchObject(['fillRect', 1, 2, 3 - 1, 4 - 2]);
-    expect(operations[1]).toMatchObject(['strokeRect', 1, 2, 3 - 1, 4 - 2]);
+    expect(operations).toMatchObject([
+      [canvas.screenContext, 'fillRect', 1, 2, 3 - 1, 4 - 2],
+      [canvas.screenContext, 'strokeRect', 1, 2, 3 - 1, 4 - 2],
+    ]);
   });
 
   it('applies state to context without border', () => {
@@ -95,8 +96,9 @@ describe('RectangleToolStateHandler', () => {
     stateHandler.applyState(contextProxy, viewState, toolState);
 
     expect(canvas.screenContext.fillStyle).toBe('#abcdef');
-    expect(operations.length).toBe(1);
-    expect(operations[0]).toMatchObject(['fillRect', 1, 2, 3 - 1, 4 - 2]);
+    expect(operations).toMatchObject([
+      [canvas.screenContext, 'fillRect', 1, 2, 3 - 1, 4 - 2],
+    ]);
   });
 
   it('applies state to context without fill', () => {
@@ -124,7 +126,8 @@ describe('RectangleToolStateHandler', () => {
 
     expect(canvas.screenContext.lineWidth).toBe(3 * 7);
     expect(canvas.screenContext.strokeStyle).toBe('#123456');
-    expect(operations.length).toBe(1);
-    expect(operations[0]).toMatchObject(['strokeRect', 1, 2, 3 - 1, 4 - 2]);
+    expect(operations).toMatchObject([
+      [canvas.screenContext, 'strokeRect', 1, 2, 3 - 1, 4 - 2],
+    ]);
   });
 });

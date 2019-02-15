@@ -67,11 +67,12 @@ describe('CircleToolStateHandler', () => {
     expect(canvas.screenContext.fillStyle).toBe('#abcdef');
     expect(canvas.screenContext.lineWidth).toBe(3 * 7);
     expect(canvas.screenContext.strokeStyle).toBe('#123456');
-    expect(operations.length).toBe(4);
-    expect(operations[0]).toMatchObject(['beginPath']);
-    expect(operations[1]).toMatchObject(['arc', 1, 2, radius, 0, Math.PI * 2]);
-    expect(operations[2]).toMatchObject(['fill']);
-    expect(operations[3]).toMatchObject(['stroke']);
+    expect(operations).toMatchObject([
+      [canvas.screenContext, 'beginPath'],
+      [canvas.screenContext, 'arc', 1, 2, radius, 0, Math.PI * 2],
+      [canvas.screenContext, 'fill'],
+      [canvas.screenContext, 'stroke'],
+    ]);
   });
 
   it('applies state to context without border', () => {
@@ -99,10 +100,11 @@ describe('CircleToolStateHandler', () => {
     stateHandler.applyState(contextProxy, viewState, toolState);
 
     expect(canvas.screenContext.fillStyle).toBe('#abcdef');
-    expect(operations.length).toBe(3);
-    expect(operations[0]).toMatchObject(['beginPath']);
-    expect(operations[1]).toMatchObject(['arc', 1, 2, radius, 0, Math.PI * 2]);
-    expect(operations[2]).toMatchObject(['fill']);
+    expect(operations).toMatchObject([
+      [canvas.screenContext, 'beginPath'],
+      [canvas.screenContext, 'arc', 1, 2, radius, 0, Math.PI * 2],
+      [canvas.screenContext, 'fill'],
+    ]);
   });
 
   it('applies state to context without fill', () => {
@@ -131,9 +133,10 @@ describe('CircleToolStateHandler', () => {
 
     expect(canvas.screenContext.lineWidth).toBe(3 * 7);
     expect(canvas.screenContext.strokeStyle).toBe('#123456');
-    expect(operations.length).toBe(3);
-    expect(operations[0]).toMatchObject(['beginPath']);
-    expect(operations[1]).toMatchObject(['arc', 1, 2, radius, 0, Math.PI * 2]);
-    expect(operations[2]).toMatchObject(['stroke']);
+    expect(operations).toMatchObject([
+      [canvas.screenContext, 'beginPath'],
+      [canvas.screenContext, 'arc', 1, 2, radius, 0, Math.PI * 2],
+      [canvas.screenContext, 'stroke'],
+    ]);
   });
 });

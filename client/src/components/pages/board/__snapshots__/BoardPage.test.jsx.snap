@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BoardPage renders properly 1`] = `
+<div
+  className="board-container"
+  draggable={false}
+>
+  <div
+    className="top-panel-container"
+  >
+    <div
+      className="top-panel"
+    >
+      <div
+        className="tool-select"
+      >
+        <select
+          name="tool-name-options"
+          onChange={[Function]}
+          value="a"
+        >
+          <option
+            key="a"
+            value="a"
+          >
+            a
+          </option>
+          <option
+            key="b"
+            value="b"
+          >
+            b
+          </option>
+          <option
+            key="c"
+            value="c"
+          >
+            c
+          </option>
+        </select>
+      </div>
+      <div
+        className="tool-options"
+      >
+        <div>
+          Options
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="drawboard-canvas-container"
+    id="drawboard-canvas-container"
+    onMouseDown={[Function]}
+    onMouseLeave={[Function]}
+    onMouseMove={[Function]}
+    onMouseUp={[Function]}
+  >
+    <canvas
+      draggable={false}
+      id="drawboard-canvas"
+    />
+  </div>
+</div>
+`;

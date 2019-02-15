@@ -62,10 +62,11 @@ describe('LineToolStateHandler', () => {
 
     expect(canvas.screenContext.lineWidth).toBe(3 * 7);
     expect(canvas.screenContext.strokeStyle).toBe('#123456');
-    expect(operations.length).toBe(4);
-    expect(operations[0]).toMatchObject(['beginPath']);
-    expect(operations[1]).toMatchObject(['moveTo', 1, 2]);
-    expect(operations[2]).toMatchObject(['lineTo', 3, 4]);
-    expect(operations[3]).toMatchObject(['stroke']);
+    expect(operations).toMatchObject([
+      [canvas.screenContext, 'beginPath'],
+      [canvas.screenContext, 'moveTo', 1, 2],
+      [canvas.screenContext, 'lineTo', 3, 4],
+      [canvas.screenContext, 'stroke'],
+    ]);
   });
 });

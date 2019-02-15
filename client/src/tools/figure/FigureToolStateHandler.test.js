@@ -114,15 +114,16 @@ describe('FigureToolStateHandler', () => {
     expect(canvas.screenContext.fillStyle).toBe('#abcdef');
     expect(canvas.screenContext.lineWidth).toBe(3 * 7);
     expect(canvas.screenContext.strokeStyle).toBe('#123456');
-    expect(operations.length).toBe(8);
-    expect(operations[0]).toMatchObject(['beginPath']);
-    expect(operations[1]).toMatchObject(['moveTo', 10, 10]);
-    expect(operations[2]).toMatchObject(['lineTo', 10, 10]);
-    expect(operations[3]).toMatchObject(['lineTo', 100, 10]);
-    expect(operations[4]).toMatchObject(['lineTo', 100, 100]);
-    expect(operations[5]).toMatchObject(['closePath']);
-    expect(operations[6]).toMatchObject(['fill']);
-    expect(operations[7]).toMatchObject(['stroke']);
+    expect(operations).toMatchObject([
+      [canvas.screenContext, 'beginPath'],
+      [canvas.screenContext, 'moveTo', 10, 10],
+      [canvas.screenContext, 'lineTo', 10, 10],
+      [canvas.screenContext, 'lineTo', 100, 10],
+      [canvas.screenContext, 'lineTo', 100, 100],
+      [canvas.screenContext, 'closePath'],
+      [canvas.screenContext, 'fill'],
+      [canvas.screenContext, 'stroke'],
+    ]);
   });
 
   it('applies state to context without border', () => {
@@ -147,14 +148,15 @@ describe('FigureToolStateHandler', () => {
     stateHandler.applyState(contextProxy, viewState, toolState);
 
     expect(canvas.screenContext.fillStyle).toBe('#abcdef');
-    expect(operations.length).toBe(7);
-    expect(operations[0]).toMatchObject(['beginPath']);
-    expect(operations[1]).toMatchObject(['moveTo', 10, 10]);
-    expect(operations[2]).toMatchObject(['lineTo', 10, 10]);
-    expect(operations[3]).toMatchObject(['lineTo', 100, 10]);
-    expect(operations[4]).toMatchObject(['lineTo', 100, 100]);
-    expect(operations[5]).toMatchObject(['closePath']);
-    expect(operations[6]).toMatchObject(['fill']);
+    expect(operations).toMatchObject([
+      [canvas.screenContext, 'beginPath'],
+      [canvas.screenContext, 'moveTo', 10, 10],
+      [canvas.screenContext, 'lineTo', 10, 10],
+      [canvas.screenContext, 'lineTo', 100, 10],
+      [canvas.screenContext, 'lineTo', 100, 100],
+      [canvas.screenContext, 'closePath'],
+      [canvas.screenContext, 'fill'],
+    ]);
   });
 
   it('applies state to context without fill', () => {
@@ -180,14 +182,15 @@ describe('FigureToolStateHandler', () => {
 
     expect(canvas.screenContext.lineWidth).toBe(3 * 7);
     expect(canvas.screenContext.strokeStyle).toBe('#123456');
-    expect(operations.length).toBe(7);
-    expect(operations[0]).toMatchObject(['beginPath']);
-    expect(operations[1]).toMatchObject(['moveTo', 10, 10]);
-    expect(operations[2]).toMatchObject(['lineTo', 10, 10]);
-    expect(operations[3]).toMatchObject(['lineTo', 100, 10]);
-    expect(operations[4]).toMatchObject(['lineTo', 100, 100]);
-    expect(operations[5]).toMatchObject(['closePath']);
-    expect(operations[6]).toMatchObject(['stroke']);
+    expect(operations).toMatchObject([
+      [canvas.screenContext, 'beginPath'],
+      [canvas.screenContext, 'moveTo', 10, 10],
+      [canvas.screenContext, 'lineTo', 10, 10],
+      [canvas.screenContext, 'lineTo', 100, 10],
+      [canvas.screenContext, 'lineTo', 100, 100],
+      [canvas.screenContext, 'closePath'],
+      [canvas.screenContext, 'stroke'],
+    ]);
   });
 
   it('applies state to context when adding points', () => {
@@ -216,15 +219,16 @@ describe('FigureToolStateHandler', () => {
     expect(canvas.screenContext.lineWidth).toBe(3 * 7);
     expect(canvas.screenContext.strokeStyle).toBe('#123456');
     expect(canvas.screenContext.fillStyle).toBe('#abcdef');
-    expect(operations.length).toBe(9);
-    expect(operations[0]).toMatchObject(['beginPath']);
-    expect(operations[1]).toMatchObject(['moveTo', 10, 10]);
-    expect(operations[2]).toMatchObject(['lineTo', 10, 10]);
-    expect(operations[3]).toMatchObject(['lineTo', 100, 10]);
-    expect(operations[4]).toMatchObject(['lineTo', 100, 100]);
-    expect(operations[5]).toMatchObject(['lineTo', 10, 100]);
-    expect(operations[6]).toMatchObject(['closePath']);
-    expect(operations[7]).toMatchObject(['fill']);
-    expect(operations[8]).toMatchObject(['stroke']);
+    expect(operations).toMatchObject([
+      [canvas.screenContext, 'beginPath'],
+      [canvas.screenContext, 'moveTo', 10, 10],
+      [canvas.screenContext, 'lineTo', 10, 10],
+      [canvas.screenContext, 'lineTo', 100, 10],
+      [canvas.screenContext, 'lineTo', 100, 100],
+      [canvas.screenContext, 'lineTo', 10, 100],
+      [canvas.screenContext, 'closePath'],
+      [canvas.screenContext, 'fill'],
+      [canvas.screenContext, 'stroke'],
+    ]);
   });
 });

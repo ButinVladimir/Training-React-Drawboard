@@ -21,7 +21,7 @@ const BoardPage = ({
       <div className="top-panel-container">
         <div className="top-panel">
           <div className="tool-select">
-            <select onChange={(e) => { onChangeTool(e.target.value); }} value={selectedToolName}>
+            <select name="tool-name-options" onChange={(e) => { onChangeTool(e.target.value); }} value={selectedToolName}>
               {toolNameOptions}
             </select>
           </div>
@@ -31,6 +31,7 @@ const BoardPage = ({
         </div>
       </div>
       <div // eslint-disable-line jsx-a11y/no-static-element-interactions
+        id="drawboard-canvas-container"
         className="drawboard-canvas-container"
         onMouseDown={onMouseDown}
         onMouseUp={onMouseUp}
