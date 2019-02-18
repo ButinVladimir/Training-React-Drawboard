@@ -16,18 +16,18 @@ export default (socket, roomToCanvasMap) => (room) => {
 
       let canvas;
       if (!roomToCanvasMap.has(room)) {
-        console.log(room, 'does not exists yet');
+        console.log(`${room} does not exists yet`);
         canvas = createCanvas(500, 500);
         roomToCanvasMap.set(room, canvas);
       } else {
-        console.log(room, 'exists');
+        console.log(`${room} exists`);
         canvas = roomToCanvasMap.get(room);
       }
 
       socket.emit(CONNECTION_ESTABLISHED);
 
       socket.on(GET_IMAGE, () => {
-        console.log('User requested image in', room);
+        console.log(`User ${socket.id} has requested image in room ${room}`);
         socket.emit(GET_IMAGE, canvas.toDataURL());
       });
 

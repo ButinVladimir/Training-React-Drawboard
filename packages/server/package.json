@@ -5,10 +5,20 @@
   "main": "index.js",
   "private": true,
   "scripts": {
-    "start": "nodemon build/index.js",
-    "build": "babel src -w -d build",
+    "start": "npm run build && npm run serve",
+    "build": "babel src -d build",
+    "build:watch": "babel src -w -d build",
+    "serve": "nodemon build/index.js",
     "test": "jest --watch",
-    "coverage": "jest --coverage --no-cache"
+    "test:staged": "jest --env=jsdom --findRelatedTests",
+    "coverage": "jest --coverage --no-cache",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "src/**/*.js": [
+      "eslint",
+      "npm run test:staged"
+    ]
   },
   "author": "",
   "license": "ISC",
@@ -23,12 +33,14 @@
     "@babel/core": "^7.1.6",
     "@babel/preset-env": "^7.1.6",
     "babel-core": "^7.0.0-bridge.0",
-    "babel-jest": "^23.6.0",
+    "babel-jest": "^24.1.0",
     "eslint": "^5.9.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jest": "^22.0.0",
-    "jest": "^23.6.0",
+    "jest": "^24.1.0",
+    "jest-canvas-mock": "^2.0.0-alpha.3",
+    "lint-staged": "^8.1.4",
     "nodemon": "^1.18.6",
     "regenerator-runtime": "^0.13.1"
   }
