@@ -8,7 +8,8 @@
     "bootstrap": "lerna bootstrap",
     "test": "lerna run test --parallel",
     "test:precommit": "lerna run precommit --concurrency 1 --stream",
-    "coverage": "lerna run coverage --concurrency 1 --stream"
+    "coverage": "lerna run coverage --concurrency 1 --stream",
+    "postinstall": "npm run bootstrap & lerna run build"
   },
   "author": "",
   "license": "ISC",
@@ -18,7 +19,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm test:precommit"
+      "pre-commit": "npm run test:precommit"
     }
   }
 }

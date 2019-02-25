@@ -5,7 +5,7 @@
   "main": "index.js",
   "private": true,
   "scripts": {
-    "start": "npm run build && npm run serve",
+    "start": "npm run serve",
     "build": "babel src -d build",
     "build:watch": "babel src -w -d build",
     "serve": "nodemon build/index.js",
